@@ -7,9 +7,11 @@ using System.Threading.Tasks;
 namespace GameClasses
 {
 
-
     public class Field
     {
+        /// <summary>
+        /// Class field ctor
+        /// </summary>
         public Field()
         {
             armorCardStrength = 0;
@@ -17,10 +19,10 @@ namespace GameClasses
             armorOccupiedByPlayer = null;
             infantryOccupiedByPlayer = null;
         }
-        public int armorCardStrength { get; private set; }
-        public int infantryCardStrength { get; private set; }
-        public string armorOccupiedByPlayer { get; private set; }
-        public string infantryOccupiedByPlayer { get; private set; }
+        public int armorCardStrength { get; private set; }              //Strength of armor card in field
+        public int infantryCardStrength { get; private set; }           //Strength of infantry card in field
+        public string armorOccupiedByPlayer { get; private set; }       //Armor card filed owns to player
+        public string infantryOccupiedByPlayer { get; private set; }    //Infantry card filed owns to player
 
 
         public Card GetArmorCard()
@@ -43,6 +45,11 @@ namespace GameClasses
             return returnCard;
         }
 
+        /// <summary>
+        /// Func gets the type of played card and chooses an action
+        /// </summary>
+        /// <param name="card">Card that was played</param>
+        /// <param name="playerName">Name of player that played card</param>
         public void CardPlayed(Card card, string playerName)
         {
             switch (card.TypeOfCard)
@@ -68,6 +75,11 @@ namespace GameClasses
             }
 
         }
+        /// <summary>
+        /// Func sets the changes on the field  due to played card 
+        /// </summary>
+        /// <param name="card">Card that was played</param>
+        /// <param name="playerName">Name of player that played card</param>
 
         private void PerformAction(Card card, string playerName)
         {
@@ -128,8 +140,8 @@ namespace GameClasses
             }
         }
 
-        private Card _armorCard = null;
-        private Card _infantryCard = null;
+        private Card _armorCard = null;         //Card in armor field
+        private Card _infantryCard = null;      //Card in infantry field
 
     }
 }

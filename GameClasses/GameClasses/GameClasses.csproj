@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Card.cs" />
+    <Compile Include="CardsCollection.cs" />
     <Compile Include="Deck.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="Hand.cs" />

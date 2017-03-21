@@ -118,7 +118,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.ImageLocation = "C:..\\..\\cards.img\\IS2.png";
+            this.pictureBox2.ImageLocation = (@"..\..\..\cards.img\IS2.png");
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(375, 250);
@@ -140,7 +140,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.ImageLocation = "cards.img\\Tiger555.png";
+            this.pictureBox1.ImageLocation = (@"..\..\..\cards.img\Tiger555.png");
             this.pictureBox1.Location = new System.Drawing.Point(901, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(375, 250);
@@ -555,7 +555,7 @@
             this.pct_menucards.TabIndex = 13;
             this.pct_menucards.TabStop = false;
             this.pct_menucards.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pct_menucards.ImageLocation = "C:\\C#\\DeckGenerals\\cards.img\\MainMenuCards.jpg";
+            this.pct_menucards.ImageLocation = @"..\..\..\cards.img\MainMenuCards.jpg";
             // 
             // UserInterface
             // 

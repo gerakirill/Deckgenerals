@@ -8,6 +8,9 @@ using GameClasses;
 
 namespace DeckGenerals
 {
+    /// <summary>
+    /// Modified MyPictureBox to keep the cad in it
+    /// </summary>
     class MyPictureBox : PictureBox
     {
         public MyPictureBox(Card card)

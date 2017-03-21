@@ -14,16 +14,18 @@ namespace GameClasses
     /// </summary>
     public class Card : ICloneable, IComparable<Card>
     {
-
         /// <summary>
-        /// Struct card ctor
+        /// Class Card ctor
         /// </summary>
-        /// <param name="name">Card name</param>
-        /// <param name="type">Card type</param>
-        /// <param name="ability">Card ability</param>
-        /// <param name="resourceReq">Resource requirement for card</param>
-        /// <param name="abilityValue">Card ability value</param>
-        /// <param name="abilityText">Card ability text</param>
+        /// <param name="name"></param>             //Card name
+        /// <param name="type"></param>             //Card type
+        /// <param name="ability"></param>          //Card ability
+        /// <param name="resourceReq"></param>      //Card resouce requirement
+        /// <param name="abilityValue"></param>     //Card ability value
+        /// <param name="abilityText"></param>      //Text of cad ability
+        /// <param name="image"></param>            //Visual of card
+        /// <param name="attackValue"></param>      //Attack value of card
+        /// <param name="strengthValue"></param>    //Stength value of card
         public Card(string name, CardTypes type, AbilityTypes ability, int resourceReq, int abilityValue, string abilityText, Image image, int attackValue, int strengthValue)
         {
             _cardType = type;
@@ -38,14 +40,17 @@ namespace GameClasses
         }
         public Card()
         {
-        }
-
-
+        }        
         public object Clone()
         {
             return new Card(this._cardName, this._cardType, this._cardAbility, this._cardResourceReq, this._cardAbilityValue, this._cardAbilityText, this._cardImage, this._cardAttack, this._cardStrength);
         }
 
+        /// <summary>
+        /// Sort order of cards in Hand
+        /// </summary>
+        /// <param name="obj"></param>
+        /// <returns></returns>
         public int CompareTo(Card obj)
         {
             if (this._cardResourceReq > obj._cardResourceReq)
@@ -62,6 +67,10 @@ namespace GameClasses
             }
         }
 
+        /// <summary>
+        /// Func changes card Strength
+        /// </summary>
+        /// <param name="delta"></param>
         public void ChangeCardStrength(int delta)
         {
             _cardStrength += delta;
@@ -119,8 +128,8 @@ namespace GameClasses
         private int _cardAbilityValue;            //card ability value
         private string _cardAbilityText;          //text represntation of card ability
         private Image _cardImage;                 //text represntation of card ability
-        private int _cardAttack;
-        private int _cardStrength;
+        private int _cardAttack;                  //attack value of card
+        private int _cardStrength;                //strength value of card
 
 
     }

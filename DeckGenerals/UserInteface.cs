@@ -11,98 +11,126 @@ using GameClasses;
 
 namespace DeckGenerals
 {
+    //Game pages
+    public enum Pages
+    {
+        empty = 0,
+        tabpg_mainmenu = 1,
+        tabpg_draftmenu = 2,
+        tabpg_gamemenu = 4
+    }
+    
     public delegate void ChoosePlayerNamer(object sender, ChoosePlayerNameEventArgs args);
     public partial class UserInterface : Form
     {
-
-        private List<MyPictureBox> pictureBoxCards = new List<MyPictureBox>(0);
-
-        // 0 - Main Menu
-        // 1 - Draft Menu
-        // 2 - Game Menu        
-        private int activePageNumber = 0;
-
-        public void SetActivePage(int pageNum)
-        {
-            activePageNumber = pageNum;
-            tabControl1.SelectTab(pageNum);
-            if (pageNum == 2)
-            {
-                tabControl1.TabPages[activePageNumber].Controls.Add(txt_log);
-                tabControl1.TabPages[activePageNumber].Controls.Add(pct_lastplayed);
-                tabControl1.TabPages[activePageNumber].Controls.Add(lbl_lastpicked);
-                tabControl1.TabPages[activePageNumber].Controls.Add(lbl_log);
-                this.lbl_lastpicked.Text = "Last played";
-                this.pct_lastplayed.Image = null;
-            }
-        }
-
-        internal List<MyPictureBox> Cards
-        {
-            get
-            {
-                return pictureBoxCards;
-            }
-        }
-
         public UserInterface()
         {
             InitializeComponent();
         }
+        
+        public event ChoosePlayerNamer ProceedClickEvent;
+        public event EventHandler PictureClickEvent;
+        public event Action NoCardsLeftEvent;
+        public event Action EndTurnClickEvent;
 
+        /// <summary>
+        /// Func sets active game page
+        /// </summary>
+        /// <param name="page"></param>
+        public void SetActivePage(Pages page)
+        {
+            _activePageNumber = page;
 
+            switch (page)
+            {
+                case Pages.empty:
+                    break;
+                case Pages.tabpg_mainmenu:
+                    break;
+                case Pages.tabpg_draftmenu:
+                    break;
+                case Pages.tabpg_gamemenu:      //if setting game menu - adding game log and "last picked" picture
+                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(txt_log);
+                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(pct_lastplayed);
+                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(lbl_lastpicked);
+                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(lbl_log);
+                    this.lbl_lastpicked.Text = "Last played";
+                    this.pct_lastplayed.Image = null;
+                    break;
+                default:
+                    break;
+            }
+            tabControl1.SelectTab(page.ToString());
+           
+        }
+       
+        /// <summary>
+        /// Button start event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_start_Click(object sender, EventArgs e)
         {
-            this.lbl_entername.Enabled = true;
+            this.lbl_entername.Enabled = true;          //Making visible and enbled buttons "enter name" and "proceed"
             this.txt_entername.Enabled = true;
             this.btn_proceed.Enabled = true;
             this.lbl_entername.Visible = true;
             this.txt_entername.Visible = true;
             this.btn_proceed.Visible = true;
         }
-        internal void RemoveCard(MyPictureBox pctr)
-        {
-            tabControl1.TabPages[activePageNumber].Controls.Remove(pctr);
-            pictureBoxCards.Remove(pctr);
-        }
 
+        /// <summary>
+        /// Func removes all card pictureboxes from form
+        /// </summary>
         public void RemoveAllCards()
         {
             foreach (MyPictureBox card in pictureBoxCards)
             {
-                tabControl1.TabPages[activePageNumber].Controls.Remove(card);
+                tabControl1.TabPages[_activePageNumber.ToString()].Controls.Remove(card);
             }
             Cards.Clear();
         }
 
-        public event ChoosePlayerNamer ProceedClickEvent;
-        public event EventHandler PictureClickEvent;
-        public event Action NoCardsLeftEvent;
-        public event Action EndTurnClickEvent;
+
+        //Procced button event handler
         private void btn_proceed_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(tabpg_draftmenu);
             ProceedClickEvent(this, new ChoosePlayerNameEventArgs(txt_entername.Text));
         }
 
+        /// <summary>
+        /// Adds card picture to Picture Box "Last played"
+        /// </summary>
+        /// <param name="card">Card to show</param>
         public void ShowLastPlayedCard(Card card)
         {
             this.pct_lastplayed.Image = card.VisualOfCard;
         }
-        public void ShowCityCards(Card playerCity, Card computerCity)
+
+        /// <summary>
+        /// Func sets visual of players city cards
+        /// </summary>
+        /// <param name="playerCity">player city card</param>
+        /// <param name="computerCity">computer player city card</param>
+        public void SetCityVisual(Card playerCity, Card computerCity)
         {
             pct_playercity.Image = playerCity.VisualOfCard;
             pct_computercity.Image = computerCity.VisualOfCard;
-            prgbar_playercitytrength.Maximum = playerCity.AbilityValOfCard;
-            prgbar_playercitytrength.Value = playerCity.AbilityValOfCard;
+            prgbar_playercitytrength.Maximum = playerCity.StrengthOfCard;
+            prgbar_playercitytrength.Value = playerCity.StrengthOfCard;
             prgbar_playercitytrength.Style = ProgressBarStyle.Continuous;
-            prgbar_computercitystrength.Maximum = computerCity.AbilityValOfCard;
-            prgbar_computercitystrength.Value = computerCity.AbilityValOfCard;
+            prgbar_computercitystrength.Maximum = computerCity.StrengthOfCard;
+            prgbar_computercitystrength.Value = computerCity.StrengthOfCard;
             prgbar_computercitystrength.Style = ProgressBarStyle.Continuous;
             lbl_playercitystrength.Text = (playerCity.AbilityValOfCard + "/" + playerCity.AbilityValOfCard);
             lbl_computercitystrength.Text = (computerCity.AbilityValOfCard + "/" + computerCity.AbilityValOfCard);
         }
 
+        /// <summary>
+        /// Func add cards picture boxes to form 
+        /// </summary>
+        /// <param name="cardsList">Card list ta add</param>
         public void ShowCards(List<Card> cardsList)
         {
             int windowWidth = this.Size.Width;
@@ -113,7 +141,7 @@ namespace DeckGenerals
             int i = cardImageWidth + indent;
             int j = indent;
             int iMax = windowWidth - cardImageWidth - indent;
-            if (activePageNumber == 2)
+            if (_activePageNumber.ToString() == "tabpg_gamemenu")
             {
                 j = windowHeight - cardImageHeight - indent - 70;
                 iMax = windowWidth - 2 * cardImageWidth - indent;
@@ -128,7 +156,7 @@ namespace DeckGenerals
                 if (i < iMax)
                 {
                     picture.Location = new Point(i, j);
-                    tabControl1.TabPages[activePageNumber].Controls.Add(picture);
+                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(picture);
                     i += cardImageWidth + indent;
                 }
                 else
@@ -136,7 +164,7 @@ namespace DeckGenerals
                     i = cardImageWidth + indent;
                     j += cardImageHeight + indent;
                     picture.Location = new Point(i, j);
-                    tabControl1.TabPages[activePageNumber].Controls.Add(picture);
+                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(picture);
                     i += cardImageWidth + indent;
                 }
                 pictureBoxCards.Add(picture);
@@ -215,6 +243,26 @@ namespace DeckGenerals
             lbl_computercardsnum.Text = computerCardsNumber.ToString();
             tabControl1.Refresh();
         }
+
+        private List<MyPictureBox> pictureBoxCards = new List<MyPictureBox>(0);
+
+        // 0 - Main Menu
+        // 1 - Draft Menu
+        // 2 - Game Menu        
+        private Pages _activePageNumber = Pages.tabpg_mainmenu;
+        internal List<MyPictureBox> Cards
+        {
+            get
+            {
+                return pictureBoxCards;
+            }
+        }
+        internal void RemoveCard(MyPictureBox pctr)
+        {
+            tabControl1.TabPages[_activePageNumber.ToString()].Controls.Remove(pctr);
+            pictureBoxCards.Remove(pctr);
+        }
+
 
     }
     public class ChoosePlayerNameEventArgs

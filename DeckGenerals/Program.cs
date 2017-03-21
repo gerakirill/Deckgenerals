@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using GameClasses;
+using System.IO;
 
 
 namespace DeckGenerals
@@ -14,7 +15,7 @@ namespace DeckGenerals
     {
         static void Main(string[] args)
         {
-
+            //GetCurrentDirectory();
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             UserInterface user = new UserInterface();
