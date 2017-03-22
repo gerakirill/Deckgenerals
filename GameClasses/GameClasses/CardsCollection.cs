@@ -25,8 +25,16 @@ namespace GameClasses
         /// <returns></returns>
         public Card GiveCard()
         {
-            Card cardToGive = (Card)cards[cards.Count - 1].Clone();
-            cards.RemoveAt(cards.Count - 1);
+            Card cardToGive = new Card();
+            if (cards.Count>0)
+            {
+                cardToGive = (Card)cards[cards.Count - 1].Clone();
+                cards.RemoveAt(cards.Count - 1);                
+            }
+            else
+            {
+                cardToGive = null;
+            }
             return cardToGive;
         }
 

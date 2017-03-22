@@ -28,9 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UserInterface));
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabpg_mainmenu = new System.Windows.Forms.TabPage();
+            this.pct_menucards = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -46,6 +46,10 @@
             this.lbl_log = new System.Windows.Forms.Label();
             this.txt_log = new System.Windows.Forms.TextBox();
             this.tabpg_gamemenu = new System.Windows.Forms.TabPage();
+            this.lbl_computercardsnum = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.lbl_computerresources = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
             this.lbl_numbeofresources = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.lbl_infantrystrength = new System.Windows.Forms.Label();
@@ -63,13 +67,18 @@
             this.pct_armor = new System.Windows.Forms.PictureBox();
             this.prgbar_playercitytrength = new System.Windows.Forms.ProgressBar();
             this.pct_playercity = new System.Windows.Forms.PictureBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lbl_computerresources = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.lbl_computercardsnum = new System.Windows.Forms.Label();
-            this.pct_menucards = new System.Windows.Forms.PictureBox();
+            this.tabpg_winmenu = new System.Windows.Forms.TabPage();
+            this.btn_quit = new System.Windows.Forms.Button();
+            this.btn_playagain = new System.Windows.Forms.Button();
+            this.lbl_computerpoints = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.lbl_playerpoints = new System.Windows.Forms.Label();
+            this.lbl_playername = new System.Windows.Forms.Label();
+            this.lbl_playerwon = new System.Windows.Forms.Label();
+            this.btn_quitmain = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabpg_mainmenu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pct_menucards)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.tabpg_draftmenu.SuspendLayout();
@@ -79,7 +88,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pct_infantry)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pct_armor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pct_playercity)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pct_menucards)).BeginInit();
+            this.tabpg_winmenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -87,6 +96,7 @@
             this.tabControl1.Controls.Add(this.tabpg_mainmenu);
             this.tabControl1.Controls.Add(this.tabpg_draftmenu);
             this.tabControl1.Controls.Add(this.tabpg_gamemenu);
+            this.tabControl1.Controls.Add(this.tabpg_winmenu);
             this.tabControl1.Location = new System.Drawing.Point(0, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -96,6 +106,7 @@
             // tabpg_mainmenu
             // 
             this.tabpg_mainmenu.BackColor = System.Drawing.Color.White;
+            this.tabpg_mainmenu.Controls.Add(this.btn_quitmain);
             this.tabpg_mainmenu.Controls.Add(this.pct_menucards);
             this.tabpg_mainmenu.Controls.Add(this.pictureBox2);
             this.tabpg_mainmenu.Controls.Add(this.label2);
@@ -114,11 +125,21 @@
             this.tabpg_mainmenu.TabIndex = 1;
             this.tabpg_mainmenu.Text = "Main Menu";
             // 
+            // pct_menucards
+            // 
+            this.pct_menucards.ImageLocation = "..\\..\\..\\cards.img\\MainMenuCards.jpg";
+            this.pct_menucards.Location = new System.Drawing.Point(433, 395);
+            this.pct_menucards.Name = "pct_menucards";
+            this.pct_menucards.Size = new System.Drawing.Size(345, 275);
+            this.pct_menucards.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pct_menucards.TabIndex = 13;
+            this.pct_menucards.TabStop = false;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.ImageLocation = (@"..\..\..\cards.img\IS2.png");
+            this.pictureBox2.ImageLocation = "..\\..\\..\\cards.img\\IS2.png";
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(375, 250);
@@ -140,7 +161,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.ImageLocation = (@"..\..\..\cards.img\Tiger555.png");
+            this.pictureBox1.ImageLocation = "..\\..\\..\\cards.img\\Tiger555.png";
             this.pictureBox1.Location = new System.Drawing.Point(901, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(375, 250);
@@ -150,7 +171,7 @@
             // 
             // btn_proceed
             // 
-            this.btn_proceed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_proceed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_proceed.BackColor = System.Drawing.Color.White;
             this.btn_proceed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -193,7 +214,7 @@
             // 
             // btn_cardbase
             // 
-            this.btn_cardbase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_cardbase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_cardbase.BackColor = System.Drawing.Color.White;
             this.btn_cardbase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -202,7 +223,7 @@
             this.btn_cardbase.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btn_cardbase.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btn_cardbase.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cardbase.Location = new System.Drawing.Point(553, 242);
+            this.btn_cardbase.Location = new System.Drawing.Point(553, 168);
             this.btn_cardbase.Name = "btn_cardbase";
             this.btn_cardbase.Size = new System.Drawing.Size(100, 50);
             this.btn_cardbase.TabIndex = 6;
@@ -211,7 +232,7 @@
             // 
             // btn_start
             // 
-            this.btn_start.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_start.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_start.BackColor = System.Drawing.Color.White;
             this.btn_start.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -219,7 +240,7 @@
             this.btn_start.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btn_start.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btn_start.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_start.Location = new System.Drawing.Point(553, 130);
+            this.btn_start.Location = new System.Drawing.Point(553, 56);
             this.btn_start.Name = "btn_start";
             this.btn_start.Size = new System.Drawing.Size(100, 50);
             this.btn_start.TabIndex = 5;
@@ -229,7 +250,7 @@
             // 
             // btn_about
             // 
-            this.btn_about.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_about.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_about.BackColor = System.Drawing.Color.White;
             this.btn_about.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -238,7 +259,7 @@
             this.btn_about.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btn_about.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btn_about.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_about.Location = new System.Drawing.Point(553, 186);
+            this.btn_about.Location = new System.Drawing.Point(553, 112);
             this.btn_about.Name = "btn_about";
             this.btn_about.Size = new System.Drawing.Size(100, 50);
             this.btn_about.TabIndex = 4;
@@ -337,6 +358,46 @@
             this.tabpg_gamemenu.Text = "Game Menu";
             this.tabpg_gamemenu.UseVisualStyleBackColor = true;
             // 
+            // lbl_computercardsnum
+            // 
+            this.lbl_computercardsnum.Font = new System.Drawing.Font("Stencil", 10F);
+            this.lbl_computercardsnum.Location = new System.Drawing.Point(1235, 298);
+            this.lbl_computercardsnum.Name = "lbl_computercardsnum";
+            this.lbl_computercardsnum.Size = new System.Drawing.Size(29, 17);
+            this.lbl_computercardsnum.TabIndex = 20;
+            this.lbl_computercardsnum.Text = "1";
+            this.lbl_computercardsnum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Font = new System.Drawing.Font("Stencil", 10F);
+            this.label6.Location = new System.Drawing.Point(1114, 298);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(118, 17);
+            this.label6.TabIndex = 19;
+            this.label6.Text = "Cards in Hand:";
+            // 
+            // lbl_computerresources
+            // 
+            this.lbl_computerresources.Font = new System.Drawing.Font("Stencil", 10F);
+            this.lbl_computerresources.Location = new System.Drawing.Point(1235, 281);
+            this.lbl_computerresources.Name = "lbl_computerresources";
+            this.lbl_computerresources.Size = new System.Drawing.Size(29, 17);
+            this.lbl_computerresources.TabIndex = 18;
+            this.lbl_computerresources.Text = "1";
+            this.lbl_computerresources.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Stencil", 10F);
+            this.label4.Location = new System.Drawing.Point(1065, 281);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(172, 17);
+            this.label4.TabIndex = 17;
+            this.label4.Text = "Number of resources:";
+            // 
             // lbl_numbeofresources
             // 
             this.lbl_numbeofresources.Font = new System.Drawing.Font("Stencil", 10F);
@@ -407,7 +468,7 @@
             // 
             // btn_endturn
             // 
-            this.btn_endturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_endturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_endturn.BackColor = System.Drawing.Color.White;
             this.btn_endturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -507,55 +568,142 @@
             this.pct_playercity.TabIndex = 0;
             this.pct_playercity.TabStop = false;
             // 
-            // label4
+            // tabpg_winmenu
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Stencil", 10F);
-            this.label4.Location = new System.Drawing.Point(1065, 281);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(172, 17);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "Number of resources:";
+            this.tabpg_winmenu.Controls.Add(this.btn_quit);
+            this.tabpg_winmenu.Controls.Add(this.btn_playagain);
+            this.tabpg_winmenu.Controls.Add(this.lbl_computerpoints);
+            this.tabpg_winmenu.Controls.Add(this.label5);
+            this.tabpg_winmenu.Controls.Add(this.lbl_playerpoints);
+            this.tabpg_winmenu.Controls.Add(this.lbl_playername);
+            this.tabpg_winmenu.Controls.Add(this.lbl_playerwon);
+            this.tabpg_winmenu.Location = new System.Drawing.Point(4, 22);
+            this.tabpg_winmenu.Name = "tabpg_winmenu";
+            this.tabpg_winmenu.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpg_winmenu.Size = new System.Drawing.Size(1272, 774);
+            this.tabpg_winmenu.TabIndex = 4;
+            this.tabpg_winmenu.Text = "Win Menu";
+            this.tabpg_winmenu.UseVisualStyleBackColor = true;
             // 
-            // lbl_computerresources
+            // btn_quit
             // 
-            this.lbl_computerresources.Font = new System.Drawing.Font("Stencil", 10F);
-            this.lbl_computerresources.Location = new System.Drawing.Point(1235, 281);
-            this.lbl_computerresources.Name = "lbl_computerresources";
-            this.lbl_computerresources.Size = new System.Drawing.Size(29, 17);
-            this.lbl_computerresources.TabIndex = 18;
-            this.lbl_computerresources.Text = "1";
-            this.lbl_computerresources.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.btn_quit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_quit.BackColor = System.Drawing.Color.White;
+            this.btn_quit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_quit.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_quit.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_quit.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_quit.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_quit.Location = new System.Drawing.Point(563, 376);
+            this.btn_quit.Name = "btn_quit";
+            this.btn_quit.Size = new System.Drawing.Size(100, 50);
+            this.btn_quit.TabIndex = 18;
+            this.btn_quit.Text = "Quit";
+            this.btn_quit.UseVisualStyleBackColor = false;
+            this.btn_quit.Click += new System.EventHandler(this.btn_quit_Click);
             // 
-            // label6
+            // btn_playagain
             // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Stencil", 10F);
-            this.label6.Location = new System.Drawing.Point(1114, 298);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(118, 17);
-            this.label6.TabIndex = 19;
-            this.label6.Text = "Cards in Hand:";
+            this.btn_playagain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_playagain.BackColor = System.Drawing.Color.White;
+            this.btn_playagain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_playagain.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_playagain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_playagain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_playagain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_playagain.Location = new System.Drawing.Point(563, 303);
+            this.btn_playagain.Name = "btn_playagain";
+            this.btn_playagain.Size = new System.Drawing.Size(100, 50);
+            this.btn_playagain.TabIndex = 17;
+            this.btn_playagain.Text = "Play again";
+            this.btn_playagain.UseVisualStyleBackColor = false;
+            this.btn_playagain.Click += new System.EventHandler(this.btn_playagain_Click);
             // 
-            // lbl_computercardsnum
+            // lbl_computerpoints
             // 
-            this.lbl_computercardsnum.Font = new System.Drawing.Font("Stencil", 10F);
-            this.lbl_computercardsnum.Location = new System.Drawing.Point(1235, 298);
-            this.lbl_computercardsnum.Name = "lbl_computercardsnum";
-            this.lbl_computercardsnum.Size = new System.Drawing.Size(29, 17);
-            this.lbl_computercardsnum.TabIndex = 20;
-            this.lbl_computercardsnum.Text = "1";
-            this.lbl_computercardsnum.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_computerpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_computerpoints.AutoSize = true;
+            this.lbl_computerpoints.Font = new System.Drawing.Font("Stencil", 30.25F);
+            this.lbl_computerpoints.Location = new System.Drawing.Point(867, 305);
+            this.lbl_computerpoints.Name = "lbl_computerpoints";
+            this.lbl_computerpoints.Size = new System.Drawing.Size(68, 48);
+            this.lbl_computerpoints.TabIndex = 16;
+            this.lbl_computerpoints.Text = "20";
             // 
-            // pct_menucards
+            // label5
             // 
-            this.pct_menucards.Location = new System.Drawing.Point(433, 395);
-            this.pct_menucards.Name = "pct_menucards";
-            this.pct_menucards.Size = new System.Drawing.Size(345, 275);
-            this.pct_menucards.TabIndex = 13;
-            this.pct_menucards.TabStop = false;
-            this.pct_menucards.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pct_menucards.ImageLocation = @"..\..\..\cards.img\MainMenuCards.jpg";
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Stencil", 30.25F);
+            this.label5.Location = new System.Drawing.Point(782, 257);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(233, 48);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Computer";
+            // 
+            // lbl_playerpoints
+            // 
+            this.lbl_playerpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_playerpoints.AutoSize = true;
+            this.lbl_playerpoints.Font = new System.Drawing.Font("Stencil", 30.25F);
+            this.lbl_playerpoints.Location = new System.Drawing.Point(265, 305);
+            this.lbl_playerpoints.Name = "lbl_playerpoints";
+            this.lbl_playerpoints.Size = new System.Drawing.Size(68, 48);
+            this.lbl_playerpoints.TabIndex = 14;
+            this.lbl_playerpoints.Text = "20";
+            // 
+            // lbl_playername
+            // 
+            this.lbl_playername.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_playername.AutoSize = true;
+            this.lbl_playername.Font = new System.Drawing.Font("Stencil", 30.25F);
+            this.lbl_playername.Location = new System.Drawing.Point(220, 257);
+            this.lbl_playername.Name = "lbl_playername";
+            this.lbl_playername.Size = new System.Drawing.Size(170, 48);
+            this.lbl_playername.TabIndex = 13;
+            this.lbl_playername.Text = "Player";
+            // 
+            // lbl_playerwon
+            // 
+            this.lbl_playerwon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_playerwon.AutoSize = true;
+            this.lbl_playerwon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lbl_playerwon.Font = new System.Drawing.Font("Stencil", 30.25F);
+            this.lbl_playerwon.Location = new System.Drawing.Point(529, 194);
+            this.lbl_playerwon.Name = "lbl_playerwon";
+            this.lbl_playerwon.Size = new System.Drawing.Size(172, 50);
+            this.lbl_playerwon.TabIndex = 12;
+            this.lbl_playerwon.Text = "Player";
+            // 
+            // btn_quitmain
+            // 
+            this.btn_quitmain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_quitmain.BackColor = System.Drawing.Color.White;
+            this.btn_quitmain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_quitmain.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_quitmain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_quitmain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_quitmain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_quitmain.Location = new System.Drawing.Point(553, 224);
+            this.btn_quitmain.Name = "btn_quitmain";
+            this.btn_quitmain.Size = new System.Drawing.Size(100, 50);
+            this.btn_quitmain.TabIndex = 14;
+            this.btn_quitmain.Text = "Quit";
+            this.btn_quitmain.UseVisualStyleBackColor = false;
+            this.btn_quitmain.Click += new System.EventHandler(this.btn_quitmain_Click);
             // 
             // UserInterface
             // 
@@ -568,6 +716,7 @@
             this.tabControl1.ResumeLayout(false);
             this.tabpg_mainmenu.ResumeLayout(false);
             this.tabpg_mainmenu.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pct_menucards)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.tabpg_draftmenu.ResumeLayout(false);
@@ -579,7 +728,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pct_infantry)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pct_armor)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pct_playercity)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pct_menucards)).EndInit();
+            this.tabpg_winmenu.ResumeLayout(false);
+            this.tabpg_winmenu.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -624,5 +774,14 @@
         private System.Windows.Forms.Label lbl_computerresources;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.PictureBox pct_menucards;
+        private System.Windows.Forms.TabPage tabpg_winmenu;
+        private System.Windows.Forms.Button btn_playagain;
+        private System.Windows.Forms.Label lbl_computerpoints;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label lbl_playerpoints;
+        private System.Windows.Forms.Label lbl_playername;
+        private System.Windows.Forms.Label lbl_playerwon;
+        private System.Windows.Forms.Button btn_quit;
+        private System.Windows.Forms.Button btn_quitmain;
     }
 }

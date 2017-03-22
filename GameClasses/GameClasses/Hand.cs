@@ -12,7 +12,11 @@ namespace GameClasses
     {
         public void AddCardFromDeck(ref Deck deckName)
         {
-            cards.Add(deckName.GiveCard());
+            Card cardToAdd = deckName.GiveCard();
+            if (cardToAdd != null)
+            {
+                cards.Add(deckName.GiveCard());
+            }            
             cards.Sort();
         }
     }

@@ -17,7 +17,8 @@ namespace DeckGenerals
         empty = 0,
         tabpg_mainmenu = 1,
         tabpg_draftmenu = 2,
-        tabpg_gamemenu = 4
+        tabpg_gamemenu = 4,
+        tabpg_winmenu = 8
     }
     
     public delegate void ChoosePlayerNamer(object sender, ChoosePlayerNameEventArgs args);
@@ -32,6 +33,8 @@ namespace DeckGenerals
         public event EventHandler PictureClickEvent;
         public event Action NoCardsLeftEvent;
         public event Action EndTurnClickEvent;
+        public event Action PlayAgainEvent;
+        public event Action QuitEvent;
 
         /// <summary>
         /// Func sets active game page
@@ -57,11 +60,12 @@ namespace DeckGenerals
                     this.lbl_lastpicked.Text = "Last played";
                     this.pct_lastplayed.Image = null;
                     break;
+                case Pages.tabpg_winmenu:
+                    break;
                 default:
                     break;
             }
-            tabControl1.SelectTab(page.ToString());
-           
+            tabControl1.SelectTab(page.ToString());           
         }
        
         /// <summary>
@@ -79,6 +83,23 @@ namespace DeckGenerals
             this.btn_proceed.Visible = true;
         }
 
+        public void SetVictoryVisual(string playerName, string playerWon, int playerCityStrength, int computerCityStrength)
+        {
+            lbl_playername.Text = playerName;
+            if (playerWon != "DRAW")
+            {
+                lbl_playerwon.Text = playerName + "  WON";
+            }
+            else
+            {
+                lbl_playerwon.Text = playerWon;
+            }
+            
+            lbl_playerpoints.Text = playerCityStrength.ToString();
+            lbl_computerpoints.Text = computerCityStrength.ToString();
+        }
+
+
         /// <summary>
         /// Func removes all card pictureboxes from form
         /// </summary>
@@ -88,7 +109,7 @@ namespace DeckGenerals
             {
                 tabControl1.TabPages[_activePageNumber.ToString()].Controls.Remove(card);
             }
-            Cards.Clear();
+            pictureBoxCards.Clear();
         }
 
 
@@ -96,7 +117,11 @@ namespace DeckGenerals
         private void btn_proceed_Click(object sender, EventArgs e)
         {
             tabControl1.SelectTab(tabpg_draftmenu);
-            ProceedClickEvent(this, new ChoosePlayerNameEventArgs(txt_entername.Text));
+            if (ProceedClickEvent != null)
+            {
+                ProceedClickEvent(this, new ChoosePlayerNameEventArgs(txt_entername.Text));
+            }
+            
         }
 
         /// <summary>
@@ -123,8 +148,8 @@ namespace DeckGenerals
             prgbar_computercitystrength.Maximum = computerCity.StrengthOfCard;
             prgbar_computercitystrength.Value = computerCity.StrengthOfCard;
             prgbar_computercitystrength.Style = ProgressBarStyle.Continuous;
-            lbl_playercitystrength.Text = (playerCity.AbilityValOfCard + "/" + playerCity.AbilityValOfCard);
-            lbl_computercitystrength.Text = (computerCity.AbilityValOfCard + "/" + computerCity.AbilityValOfCard);
+            lbl_playercitystrength.Text = (playerCity.StrengthOfCard + "/" + prgbar_playercitytrength.Maximum);
+            lbl_computercitystrength.Text = (computerCity.StrengthOfCard + "/" + prgbar_computercitystrength.Maximum);
         }
 
         /// <summary>
@@ -135,12 +160,12 @@ namespace DeckGenerals
         {
             int windowWidth = this.Size.Width;
             int windowHeight = this.Size.Height;
-            int cardImageWidth = 150;
+            int cardImageWidth = 150;               //Setting card image size
             int cardImageHeight = 225;
-            int indent = 5;
+            int indent = 5;                         //Setting inden between cards
             int i = cardImageWidth + indent;
             int j = indent;
-            int iMax = windowWidth - cardImageWidth - indent;
+            int iMax = windowWidth - cardImageWidth - indent;           //if active page - game menu - visualising cards in bottom of window
             if (_activePageNumber.ToString() == "tabpg_gamemenu")
             {
                 j = windowHeight - cardImageHeight - indent - 70;
@@ -153,7 +178,7 @@ namespace DeckGenerals
                 picture.Image = card.VisualOfCard;
                 picture.SizeMode = PictureBoxSizeMode.StretchImage;
                 picture.Click += new EventHandler(picture_Click);
-                if (i < iMax)
+                if (i < iMax)                                          //if exceedeing borders - start visualise from new line
                 {
                     picture.Location = new Point(i, j);
                     tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(picture);
@@ -172,22 +197,40 @@ namespace DeckGenerals
             tabControl1.Refresh();
 
         }
+
+        /// <summary>
+        /// Picture clock event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="args"></param>
         private void picture_Click(object sender, EventArgs args)
         {
             MyPictureBox pctBox = sender as MyPictureBox;
             PictureClickEvent(pctBox, new EventArgs());
             if (pictureBoxCards.Count <= 0)
             {
-                NoCardsLeftEvent();
+                if (NoCardsLeftEvent != null)
+                {
+                    NoCardsLeftEvent();
+                }                
             }
             tabControl1.Refresh();
         }
 
+        /// <summary>
+        /// Adding text to log
+        /// </summary>
+        /// <param name="text">Text to add</param>
         public void AddToLog(string text)
         {
             this.txt_log.AppendText(text + Environment.NewLine + "___________________" + Environment.NewLine);
         }
 
+        /// <summary>
+        /// End Turn button click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void btn_endturn_Click(object sender, EventArgs e)
         {
             this.btn_endturn.Enabled = false;
@@ -195,7 +238,11 @@ namespace DeckGenerals
             {
                 card.Enabled = false;
             }
-            EndTurnClickEvent();
+            if (EndTurnClickEvent != null)
+            {
+                EndTurnClickEvent();
+            }
+            
         }
 
         public void StartTurn()
@@ -206,6 +253,7 @@ namespace DeckGenerals
                 card.Enabled = true;
             }
         }
+
         public void SetButtonBackColor(string playername, Button button)
         {
             if (playername == "Computer")
@@ -225,31 +273,85 @@ namespace DeckGenerals
             }
         }
 
-        public void UpdateVisual(Card armorCard, Card infantryCard, int playerCityStrength, int computerCityStrength,
-            int playerResources, int computerResources, string armorOccupiedByPlayer, string infantryOccupiedByPlayer, int computerCardsNumber)
+        /// <summary>
+        /// Update color of buttons OccupiedByPlayer
+        /// </summary>
+        /// <param name="armorOccupiedByPlayer">Player name, that occupied armor field</param>
+        /// <param name="infantryOccupiedByPlayer">Player name, that occupied infanty field</param>
+        public void UpdateButtonVisual(string armorOccupiedByPlayer, string infantryOccupiedByPlayer)
+        {                 
+            SetButtonBackColor(armorOccupiedByPlayer, btn_armoroccupied);
+            SetButtonBackColor(infantryOccupiedByPlayer, btn_infantryoccupied);            
+            tabControl1.Refresh();
+        }
+
+        /// <summary>
+        /// Update isual info of players cities
+        /// </summary>
+        /// <param name="playerCityStrength">Strength of player city</param>
+        /// <param name="computerCityStrength">Strength of computer player city</param>
+        public void UpdateCityVisual(int playerCityStrength, int computerCityStrength)
         {
-            pct_armor.Image = armorCard.VisualOfCard;
-            pct_infantry.Image = infantryCard.VisualOfCard;
             prgbar_playercitytrength.Value = playerCityStrength;
             prgbar_computercitystrength.Value = computerCityStrength;
             lbl_playercitystrength.Text = (playerCityStrength + "/" + prgbar_playercitytrength.Maximum);
             lbl_computercitystrength.Text = (computerCityStrength + "/" + prgbar_computercitystrength.Maximum);
-            lbl_numbeofresources.Text = playerResources.ToString();
-            lbl_armorsrtength.Text = (armorCard.AttackOfCard + "/" + armorCard.StrengthOfCard);
-            lbl_infantrystrength.Text = (infantryCard.AttackOfCard + "/" + infantryCard.StrengthOfCard);
-            SetButtonBackColor(armorOccupiedByPlayer, btn_armoroccupied);
-            SetButtonBackColor(infantryOccupiedByPlayer, btn_infantryoccupied);
-            lbl_computerresources.Text = computerResources.ToString();
-            lbl_computercardsnum.Text = computerCardsNumber.ToString();
-            tabControl1.Refresh();
         }
 
-        private List<MyPictureBox> pictureBoxCards = new List<MyPictureBox>(0);
+        /// <summary>
+        /// Update visual of field
+        /// </summary>
+        /// <param name="armorCard">Card occupied armor field</param>
+        /// <param name="infantryCard">Card occupied infantry field</param>
+        public void UpdateFieldVisual(Card armorCard, Card infantryCard)
+        {
+            pct_armor.Image = armorCard.VisualOfCard;
+            pct_infantry.Image = infantryCard.VisualOfCard;
+            lbl_armorsrtength.Text = (armorCard.AttackOfCard + "/" + armorCard.StrengthOfCard);
+            lbl_infantrystrength.Text = (infantryCard.AttackOfCard + "/" + infantryCard.StrengthOfCard);
+        }
 
-        // 0 - Main Menu
-        // 1 - Draft Menu
-        // 2 - Game Menu        
+        /// <summary>
+        /// Update players info visual
+        /// </summary>
+        /// <param name="playerResources">Number of player resources</param>
+        /// <param name="computerResources">Number of computer player resources</param>
+        /// <param name="computerCardsNumber">Numbe of cards in computer player hand</param>
+        public void UpdatePlayerInfoVisual(int playerResources, int computerResources, int computerCardsNumber)
+        {
+            lbl_numbeofresources.Text = playerResources.ToString();
+            lbl_computerresources.Text = computerResources.ToString();
+            lbl_computercardsnum.Text = computerCardsNumber.ToString();
+        }
+
+        private void btn_playagain_Click(object sender, EventArgs e)
+        {
+            if (PlayAgainEvent != null)
+            {
+                PlayAgainEvent();
+            }
+        }
+        private void btn_quit_Click(object sender, EventArgs e)
+        {
+            if (QuitEvent != null)
+            {
+                QuitEvent();
+            }
+        }
+
+        private void btn_quitmain_Click(object sender, EventArgs e)
+        {
+            if (QuitEvent != null)
+            {
+                QuitEvent();
+            }
+        }
+
+
+        private List<MyPictureBox> pictureBoxCards = new List<MyPictureBox>(0);   
+           
         private Pages _activePageNumber = Pages.tabpg_mainmenu;
+
         internal List<MyPictureBox> Cards
         {
             get
@@ -262,8 +364,7 @@ namespace DeckGenerals
             tabControl1.TabPages[_activePageNumber.ToString()].Controls.Remove(pctr);
             pictureBoxCards.Remove(pctr);
         }
-
-
+        
     }
     public class ChoosePlayerNameEventArgs
     {

@@ -21,6 +21,8 @@ namespace DeckGenerals
             _UI.PictureClickEvent += PictureClickEventHandler;
             _UI.NoCardsLeftEvent += NoCardsEventHandler;
             _UI.EndTurnClickEvent += PlayerEndTurnEventHandler;
+            _UI.PlayAgainEvent += SetUpNewGame;
+            _UI.QuitEvent += QuitEventHandler;
         }
         /// <summary>
         /// By "Procced" button click event handler
@@ -31,15 +33,16 @@ namespace DeckGenerals
         {
             MyPictureBox pctBox = sender as MyPictureBox;
             CreatePlayers(e._playerName);
+            CityChoose();           
+        }
+
+        private void CityChoose()
+        {
             Deck cityDeck = CreateDeck("city");             //creating a deck with only city cards
             _UI.SetActivePage(Pages.tabpg_draftmenu);
             _UI.ShowCards(cityDeck.cardsInCollection);
-        //    _UI.UpdateVisual(_field.GetArmorCard(), _field.GetInfantryCard(), _player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard,
-         //      _player1.resourceQuantity, _computerPlayer.resourceQuantity, _field.armorOccupiedByPlayer, _field.infantryOccupiedByPlayer,
-           //    _computerPlayer.playerHand.cardsInCollection.Count);
         }
-
-
+        
         /// <summary>
         /// By Picture click event handler
         /// </summary>
@@ -61,11 +64,11 @@ namespace DeckGenerals
                     for (int i = 0; i < copiesInDeck; i++)
                     {
                         _player1.playerDeck.FillPlayersDeck(pctBox._card);
-                    }                    
+                    }
                     _UI.ShowLastPlayedCard(pctBox._card);
                     _UI.RemoveCard(pctBox);
                     Random rnd = new Random();
-                    ComputerPlayerDraft(rnd);               //Letting compute plaer to draft
+                    ComputerPlayerDraft(rnd);               //Letting computer player to draft
                 }
                 else                                        //If game started, we check if card can be played, if true - play it
                 {
@@ -140,7 +143,7 @@ namespace DeckGenerals
             int shuffleNumber = 4;                           //Number of deck shuffles
             for (int i = 0; i < shuffleNumber; i++)
             {
-                draftDeck.ShuffleDeck();                    
+                draftDeck.ShuffleDeck();
             }
             _UI.ShowCards(draftDeck.cardsInCollection);
         }
@@ -152,7 +155,7 @@ namespace DeckGenerals
         private void ComputerPlayerDraft(Random rnd)
         {
             int copiesInDeck = 4;
-            List<MyPictureBox> availableCards = new List<MyPictureBox>(0);  
+            List<MyPictureBox> availableCards = new List<MyPictureBox>(0);
             foreach (MyPictureBox card in _UI.Cards)                  //Getting the available cads to draft
             {
                 availableCards.Add(card);
@@ -163,10 +166,10 @@ namespace DeckGenerals
                 for (int i = 0; i < copiesInDeck; i++)
                 {
                     _computerPlayer.playerDeck.FillPlayersDeck(availableCards[randomChoose]._card);
-                }                
+                }
                 _UI.AddToLog(_computerPlayer.playerName + " picked " + availableCards[randomChoose]._card.NameOfCard);
                 _UI.RemoveCard(availableCards[randomChoose]);
-            }            
+            }
         }
 
 
@@ -180,9 +183,7 @@ namespace DeckGenerals
             _UI.RemoveAllCards();
             _UI.ShowCards(_player1.playerHand.cardsInCollection);
             _UI.StartTurn();
-            _UI.UpdateVisual(_field.GetArmorCard(), _field.GetInfantryCard(), _player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard,
-                _player1.resourceQuantity, _computerPlayer.resourceQuantity, _field.armorOccupiedByPlayer, _field.infantryOccupiedByPlayer,
-                _computerPlayer.playerHand.cardsInCollection.Count);
+            _UI.UpdatePlayerInfoVisual(_player1.resourceQuantity, _computerPlayer.resourceQuantity, _computerPlayer.playerHand.cardsInCollection.Count);
         }
 
         /// <summary>
@@ -201,7 +202,11 @@ namespace DeckGenerals
                 }
             }
             EndTurn();
-            StartNewTurn();
+            if (!_endGame)
+            {
+                StartNewTurn();
+            }
+            
         }
 
         /// <summary>
@@ -216,11 +221,12 @@ namespace DeckGenerals
                 case CardTypes.empty:
                     break;
                 case CardTypes.city:
-                    player.cityCard = (Card)card.Clone();                    
-                    _computerPlayer.cityCard = (Card)card.Clone();                    
+                    player.cityCard = (Card)card.Clone();
+                    _computerPlayer.cityCard = (Card)card.Clone();
                     _UI.ShowLastPlayedCard(card);
                     _UI.RemoveAllCards();
                     _UI.SetCityVisual(_player1.cityCard, _computerPlayer.cityCard);
+
                     StartDraft();
                     break;
                 case CardTypes.resource:
@@ -245,19 +251,34 @@ namespace DeckGenerals
                     break;
             }
             player.resourceQuantity -= card.ResOfCard;
-            _UI.UpdateVisual(_field.GetArmorCard(), _field.GetInfantryCard(), _player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard,
-                _player1.resourceQuantity, _computerPlayer.resourceQuantity, _field.armorOccupiedByPlayer, _field.infantryOccupiedByPlayer,
-                _computerPlayer.playerHand.cardsInCollection.Count);
+            _UI.UpdatePlayerInfoVisual(_player1.resourceQuantity, _computerPlayer.resourceQuantity, _computerPlayer.playerHand.cardsInCollection.Count);
+            _UI.UpdateCityVisual(_player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard);
+            _UI.UpdateFieldVisual(_field.GetArmorCard(), _field.GetInfantryCard());
+            _UI.UpdateButtonVisual(_field.armorOccupiedByPlayer, _field.infantryOccupiedByPlayer);
+
         }
 
+        private void SetUpNewGame()
+        {
+            _endGame = false;
+            _gameStarted = false;
+            _field = new Field();
+            CreatePlayers(_player1.playerName);
+            _UI.RemoveAllCards();
+            CityChoose();
+
+        }
+            
         private void PlayerEndTurnEventHandler()
         {
             EndTurn();
-            AIMove();
+            if (!_endGame)
+            {
+                AIMove();
+            }            
         }
-
         /// <summary>
-        /// Func ends turn and deals damage to players, dependan on what player occupied field
+        /// Func ends turn and deals damage to players, dependent on what player occupied field
         /// </summary>
         private void EndTurn()
         {
@@ -285,11 +306,49 @@ namespace DeckGenerals
                     _player1.cityCard.ChangeCardStrength(-_field.GetInfantryCard().AttackOfCard);
                 }
             }
-            _UI.UpdateVisual(_field.GetArmorCard(), _field.GetInfantryCard(), _player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard,
-                _player1.resourceQuantity, _computerPlayer.resourceQuantity, _field.armorOccupiedByPlayer, _field.infantryOccupiedByPlayer,
-                _computerPlayer.playerHand.cardsInCollection.Count);
+            CheckVictory();
+            if (!_endGame)
+            {
+                _UI.UpdateCityVisual(_player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard);
+            }                    
         }
 
+        private void CheckVictory()
+        {
+            string wonPlayer = null;
+            if (_player1.cityCard.StrengthOfCard <= 0)
+            {
+                wonPlayer = _computerPlayer.playerName;                
+                if (_computerPlayer.cityCard.StrengthOfCard <= 0)
+                {
+                    wonPlayer = "DRAW";                    
+                }
+                _endGame = true;
+            }
+            else
+            {
+                if (_computerPlayer.cityCard.StrengthOfCard <= 0)
+                {
+                    wonPlayer = _player1.playerName;
+                    _endGame = true;
+                }
+            }
+            if (wonPlayer != null)
+            {
+                PlayerWon(wonPlayer);
+            }            
+        }
+
+        private void PlayerWon(string playerName)
+        {
+            _UI.SetActivePage(Pages.tabpg_winmenu);
+            _UI.SetVictoryVisual( _player1.playerName, playerName, _player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard);
+        }
+
+        private void QuitEventHandler()
+        {
+            Environment.Exit(0);
+        }
 
         private void NoCardsEventHandler()
         {
@@ -303,7 +362,7 @@ namespace DeckGenerals
             }
         }
 
-
+        private bool _endGame = false;                       //Game end due to player victory
         private Player _player1 = new Player();             //Player1
         private Player _computerPlayer = new Player();      //Computer player
         private UserInterface _UI;                          //Use Interface
