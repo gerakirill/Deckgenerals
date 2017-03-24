@@ -65,8 +65,6 @@ namespace GameClasses
                 case CardTypes.armor:
                     PerformAction(card, playerName);
                     break;
-                case CardTypes.material:
-                    break;
                 case CardTypes.infantry:
                     PerformAction(card, playerName);
                     break;

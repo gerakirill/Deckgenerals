@@ -4,6 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using GameClasses;
+using UserInterface;
+
+
 
 namespace DeckGenerals
 {
@@ -13,7 +16,7 @@ namespace DeckGenerals
         /// Class controller ctor
         /// </summary>
         /// <param name="UI">Userinterface</param>
-        public Controller(UserInterface UI)
+        public Controller(UserInterface.UserInterface UI)
         {
             _UI = UI;
             _field = new Field();
@@ -39,7 +42,7 @@ namespace DeckGenerals
         private void CityChoose()
         {
             Deck cityDeck = CreateDeck("city");             //creating a deck with only city cards
-            _UI.SetActivePage(Pages.tabpg_draftmenu);
+            _UI.SetActivePage(Pages.tabpg_draftmenu);  
             _UI.ShowCards(cityDeck.cardsInCollection);
         }
         
@@ -156,7 +159,7 @@ namespace DeckGenerals
         {
             int copiesInDeck = 4;
             List<MyPictureBox> availableCards = new List<MyPictureBox>(0);
-            foreach (MyPictureBox card in _UI.Cards)                  //Getting the available cads to draft
+            foreach (MyPictureBox card in _UI.pictureBoxCards)                  //Getting the available cads to draft
             {
                 availableCards.Add(card);
             }
@@ -222,24 +225,20 @@ namespace DeckGenerals
                     break;
                 case CardTypes.city:
                     player.cityCard = (Card)card.Clone();
-                    _computerPlayer.cityCard = (Card)card.Clone();
-                    _UI.ShowLastPlayedCard(card);
+                    _computerPlayer.cityCard = (Card)card.Clone();                    
                     _UI.RemoveAllCards();
                     _UI.SetCityVisual(_player1.cityCard, _computerPlayer.cityCard);
-
                     StartDraft();
                     break;
                 case CardTypes.resource:
+                    player.resourceQuantity += card.AbilityValOfCard;
+                    player.playerHand.RemoveCard(card);
                     break;
                 case CardTypes.scene:
                     break;
                 case CardTypes.armor:
-                    _field.CardPlayed((Card)card.Clone(), player.playerName);
-                    _UI.ShowLastPlayedCard((Card)card.Clone());
-                    _UI.AddToLog(player.playerName + " played " + card.NameOfCard);
+                    _field.CardPlayed((Card)card.Clone(), player.playerName);  
                     player.playerHand.RemoveCard(card);
-                    break;
-                case CardTypes.material:
                     break;
                 case CardTypes.infantry:
                     _field.CardPlayed((Card)card.Clone(), player.playerName);
@@ -250,6 +249,8 @@ namespace DeckGenerals
                 default:
                     break;
             }
+            _UI.ShowLastPlayedCard((Card)card.Clone());
+            _UI.AddToLog(player.playerName + " played " + card.NameOfCard);
             player.resourceQuantity -= card.ResOfCard;
             _UI.UpdatePlayerInfoVisual(_player1.resourceQuantity, _computerPlayer.resourceQuantity, _computerPlayer.playerHand.cardsInCollection.Count);
             _UI.UpdateCityVisual(_player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard);
@@ -264,7 +265,8 @@ namespace DeckGenerals
             _gameStarted = false;
             _field = new Field();
             CreatePlayers(_player1.playerName);
-            _UI.RemoveAllCards();
+            _UI.SetActivePage(Pages.tabpg_draftmenu);          
+            _UI.AddNewLog();
             CityChoose();
 
         }
@@ -341,6 +343,7 @@ namespace DeckGenerals
 
         private void PlayerWon(string playerName)
         {
+            _UI.RemoveAllCards();
             _UI.SetActivePage(Pages.tabpg_winmenu);
             _UI.SetVictoryVisual( _player1.playerName, playerName, _player1.cityCard.StrengthOfCard, _computerPlayer.cityCard.StrengthOfCard);
         }
@@ -365,7 +368,7 @@ namespace DeckGenerals
         private bool _endGame = false;                       //Game end due to player victory
         private Player _player1 = new Player();             //Player1
         private Player _computerPlayer = new Player();      //Computer player
-        private UserInterface _UI;                          //Use Interface
+        private UserInterface.UserInterface _UI;                          //Use Interface
         private bool _gameStarted = false;                  //Main stage of game is started
         private Field _field;                               //Game field
     }

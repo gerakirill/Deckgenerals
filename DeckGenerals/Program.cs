@@ -15,10 +15,10 @@ namespace DeckGenerals
     {
         static void Main(string[] args)
         {
-            //GetCurrentDirectory();
+            
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            UserInterface user = new UserInterface();
+            UserInterface.UserInterface user = new UserInterface.UserInterface();
             Controller cntrl1 = new Controller(user);
             Application.Run(user);
 

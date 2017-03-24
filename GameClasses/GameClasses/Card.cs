@@ -26,7 +26,8 @@ namespace GameClasses
         /// <param name="image"></param>            //Visual of card
         /// <param name="attackValue"></param>      //Attack value of card
         /// <param name="strengthValue"></param>    //Stength value of card
-        public Card(string name, CardTypes type, AbilityTypes ability, int resourceReq, int abilityValue, string abilityText, Image image, int attackValue, int strengthValue)
+        /// /// <param name="rarity"></param>       //Rarity of card
+        public Card(string name, CardTypes type, AbilityTypes ability, int resourceReq, int abilityValue, string abilityText, Image image, int attackValue, int strengthValue, CardRarity rarity)
         {
             _cardType = type;
             _cardName = name;
@@ -37,13 +38,14 @@ namespace GameClasses
             _cardImage = image;
             _cardStrength = strengthValue;
             _cardAttack = attackValue;
+            _rarity = rarity;
         }
         public Card()
         {
         }        
         public object Clone()
         {
-            return new Card(this._cardName, this._cardType, this._cardAbility, this._cardResourceReq, this._cardAbilityValue, this._cardAbilityText, this._cardImage, this._cardAttack, this._cardStrength);
+            return new Card(this._cardName, this._cardType, this._cardAbility, this._cardResourceReq, this._cardAbilityValue, this._cardAbilityText, this._cardImage, this._cardAttack, this._cardStrength, this._rarity);
         }
 
         /// <summary>
@@ -130,6 +132,7 @@ namespace GameClasses
         private Image _cardImage;                 //text represntation of card ability
         private int _cardAttack;                  //attack value of card
         private int _cardStrength;                //strength value of card
+        private CardRarity _rarity;               //rarity of card
 
 
     }
