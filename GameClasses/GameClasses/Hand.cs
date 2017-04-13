@@ -10,12 +10,16 @@ namespace GameClasses
 
     public class Hand : CardsCollection
     {
-        public void AddCardFromDeck(ref Deck deckName)
+        /// <summary>
+        /// Func adds Card from deck
+        /// </summary>
+        /// <param name="deckName">Name of deck, from which to add card</param>
+        public void AddCardFromDeck(Deck deckName)
         {
             Card cardToAdd = deckName.GiveCard();
             if (cardToAdd != null)
             {
-                cards.Add(deckName.GiveCard());
+                AddCard(deckName.GiveCard());
             }            
             cards.Sort();
         }

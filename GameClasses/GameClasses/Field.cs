@@ -83,7 +83,7 @@ namespace GameClasses
         {
             Card cardToAct = new Card();
             string cardOccupied;
-            if (card.TypeOfCard.HasFlag(CardTypes.armor))
+            if (card.TypeOfCard == CardTypes.armor)
             {
                 cardToAct = _armorCard;
                 cardOccupied = armorOccupiedByPlayer;
@@ -126,7 +126,7 @@ namespace GameClasses
                 cardOccupied = playerName;
             }
 
-            if (card.TypeOfCard.HasFlag(CardTypes.armor))
+            if (card.TypeOfCard == CardTypes.armor)
             {
                 _armorCard = cardToAct;
                 armorOccupiedByPlayer = cardOccupied;
@@ -136,7 +136,10 @@ namespace GameClasses
                 _infantryCard = cardToAct;
                 infantryOccupiedByPlayer = cardOccupied;
             }
+            FieldChangedEvent(this, new EventArgs());
         }
+
+        public EventHandler FieldChangedEvent;
 
         private Card _armorCard = null;         //Card in armor field
         private Card _infantryCard = null;      //Card in infantry field

@@ -30,16 +30,19 @@
         {
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabpg_mainmenu = new System.Windows.Forms.TabPage();
+            this.btn_proceedmain = new System.Windows.Forms.Button();
+            this.lbl_passmain = new System.Windows.Forms.Label();
+            this.txt_passmain = new System.Windows.Forms.MaskedTextBox();
+            this.btn_login = new System.Windows.Forms.Button();
             this.btn_quitmain = new System.Windows.Forms.Button();
             this.pct_menucards = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.label2 = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.btn_proceed = new System.Windows.Forms.Button();
-            this.lbl_entername = new System.Windows.Forms.Label();
-            this.txt_entername = new System.Windows.Forms.TextBox();
+            this.lbl_enternamemain = new System.Windows.Forms.Label();
+            this.txt_loginmain = new System.Windows.Forms.TextBox();
             this.btn_cardbase = new System.Windows.Forms.Button();
-            this.btn_start = new System.Windows.Forms.Button();
+            this.btn_register = new System.Windows.Forms.Button();
             this.btn_about = new System.Windows.Forms.Button();
             this.tabpg_draftmenu = new System.Windows.Forms.TabPage();
             this.label7 = new System.Windows.Forms.Label();
@@ -77,6 +80,20 @@
             this.lbl_playerpoints = new System.Windows.Forms.Label();
             this.lbl_playername = new System.Windows.Forms.Label();
             this.lbl_playerwon = new System.Windows.Forms.Label();
+            this.tabpg_register = new System.Windows.Forms.TabPage();
+            this.btn_regproceed = new System.Windows.Forms.Button();
+            this.lbl_email = new System.Windows.Forms.Label();
+            this.txt_email = new System.Windows.Forms.TextBox();
+            this.lbl_password = new System.Windows.Forms.Label();
+            this.txt_password = new System.Windows.Forms.MaskedTextBox();
+            this.lbl_login = new System.Windows.Forms.Label();
+            this.txt_login = new System.Windows.Forms.TextBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.tabpg_loginmenu = new System.Windows.Forms.TabPage();
+            this.btn_deckmanager = new System.Windows.Forms.Button();
+            this.btn_playvsai = new System.Windows.Forms.Button();
+            this.lbl_playerlogin = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabpg_mainmenu.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pct_menucards)).BeginInit();
@@ -90,6 +107,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pct_armor)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pct_playercity)).BeginInit();
             this.tabpg_winmenu.SuspendLayout();
+            this.tabpg_register.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            this.tabpg_loginmenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -98,6 +119,8 @@
             this.tabControl1.Controls.Add(this.tabpg_draftmenu);
             this.tabControl1.Controls.Add(this.tabpg_gamemenu);
             this.tabControl1.Controls.Add(this.tabpg_winmenu);
+            this.tabControl1.Controls.Add(this.tabpg_register);
+            this.tabControl1.Controls.Add(this.tabpg_loginmenu);
             this.tabControl1.Location = new System.Drawing.Point(0, 1);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -107,16 +130,19 @@
             // tabpg_mainmenu
             // 
             this.tabpg_mainmenu.BackColor = System.Drawing.Color.White;
+            this.tabpg_mainmenu.Controls.Add(this.btn_proceedmain);
+            this.tabpg_mainmenu.Controls.Add(this.lbl_passmain);
+            this.tabpg_mainmenu.Controls.Add(this.txt_passmain);
+            this.tabpg_mainmenu.Controls.Add(this.btn_login);
             this.tabpg_mainmenu.Controls.Add(this.btn_quitmain);
             this.tabpg_mainmenu.Controls.Add(this.pct_menucards);
             this.tabpg_mainmenu.Controls.Add(this.pictureBox2);
             this.tabpg_mainmenu.Controls.Add(this.label2);
             this.tabpg_mainmenu.Controls.Add(this.pictureBox1);
-            this.tabpg_mainmenu.Controls.Add(this.btn_proceed);
-            this.tabpg_mainmenu.Controls.Add(this.lbl_entername);
-            this.tabpg_mainmenu.Controls.Add(this.txt_entername);
+            this.tabpg_mainmenu.Controls.Add(this.lbl_enternamemain);
+            this.tabpg_mainmenu.Controls.Add(this.txt_loginmain);
             this.tabpg_mainmenu.Controls.Add(this.btn_cardbase);
-            this.tabpg_mainmenu.Controls.Add(this.btn_start);
+            this.tabpg_mainmenu.Controls.Add(this.btn_register);
             this.tabpg_mainmenu.Controls.Add(this.btn_about);
             this.tabpg_mainmenu.ForeColor = System.Drawing.SystemColors.ControlText;
             this.tabpg_mainmenu.Location = new System.Drawing.Point(4, 22);
@@ -126,9 +152,71 @@
             this.tabpg_mainmenu.TabIndex = 1;
             this.tabpg_mainmenu.Text = "Main Menu";
             // 
+            // btn_proceedmain
+            // 
+            this.btn_proceedmain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_proceedmain.BackColor = System.Drawing.Color.White;
+            this.btn_proceedmain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_proceedmain.Enabled = false;
+            this.btn_proceedmain.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_proceedmain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_proceedmain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_proceedmain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_proceedmain.Location = new System.Drawing.Point(728, 200);
+            this.btn_proceedmain.Name = "btn_proceedmain";
+            this.btn_proceedmain.Size = new System.Drawing.Size(100, 50);
+            this.btn_proceedmain.TabIndex = 18;
+            this.btn_proceedmain.Text = "Proceed";
+            this.btn_proceedmain.UseVisualStyleBackColor = false;
+            this.btn_proceedmain.Visible = false;
+            this.btn_proceedmain.Click += new System.EventHandler(this.btn_proceedmain_Click);
+            // 
+            // lbl_passmain
+            // 
+            this.lbl_passmain.Enabled = false;
+            this.lbl_passmain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_passmain.Location = new System.Drawing.Point(716, 153);
+            this.lbl_passmain.Name = "lbl_passmain";
+            this.lbl_passmain.Size = new System.Drawing.Size(133, 14);
+            this.lbl_passmain.TabIndex = 17;
+            this.lbl_passmain.Text = "Enter your password";
+            this.lbl_passmain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_passmain.Visible = false;
+            // 
+            // txt_passmain
+            // 
+            this.txt_passmain.Enabled = false;
+            this.txt_passmain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_passmain.Location = new System.Drawing.Point(716, 170);
+            this.txt_passmain.Name = "txt_passmain";
+            this.txt_passmain.PasswordChar = '*';
+            this.txt_passmain.Size = new System.Drawing.Size(133, 21);
+            this.txt_passmain.TabIndex = 16;
+            this.txt_passmain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_passmain.Visible = false;
+            // 
+            // btn_login
+            // 
+            this.btn_login.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_login.BackColor = System.Drawing.Color.White;
+            this.btn_login.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_login.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_login.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_login.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_login.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_login.Location = new System.Drawing.Point(553, 112);
+            this.btn_login.Name = "btn_login";
+            this.btn_login.Size = new System.Drawing.Size(100, 50);
+            this.btn_login.TabIndex = 15;
+            this.btn_login.Text = "Log in";
+            this.btn_login.UseVisualStyleBackColor = false;
+            this.btn_login.Click += new System.EventHandler(this.btn_login_Click);
+            // 
             // btn_quitmain
             // 
-            this.btn_quitmain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_quitmain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_quitmain.BackColor = System.Drawing.Color.White;
             this.btn_quitmain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -136,7 +224,7 @@
             this.btn_quitmain.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btn_quitmain.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btn_quitmain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_quitmain.Location = new System.Drawing.Point(553, 224);
+            this.btn_quitmain.Location = new System.Drawing.Point(553, 280);
             this.btn_quitmain.Name = "btn_quitmain";
             this.btn_quitmain.Size = new System.Drawing.Size(100, 50);
             this.btn_quitmain.TabIndex = 14;
@@ -146,7 +234,7 @@
             // 
             // pct_menucards
             // 
-            this.pct_menucards.ImageLocation = "..\\..\\..\\cards.img\\MainMenuCards.jpg";
+            this.pct_menucards.ImageLocation = "..\\..\\..\\..\\cards.img\\MainMenuCards.jpg";
             this.pct_menucards.Location = new System.Drawing.Point(433, 395);
             this.pct_menucards.Name = "pct_menucards";
             this.pct_menucards.Size = new System.Drawing.Size(345, 275);
@@ -158,7 +246,7 @@
             // 
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pictureBox2.ImageLocation = "..\\..\\..\\cards.img\\IS2.png";
+            this.pictureBox2.ImageLocation = "..\\..\\..\\..\\cards.img\\IS2.png";
             this.pictureBox2.Location = new System.Drawing.Point(0, 0);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(375, 250);
@@ -180,7 +268,7 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
-            this.pictureBox1.ImageLocation = "..\\..\\..\\cards.img\\Tiger555.png";
+            this.pictureBox1.ImageLocation = "..\\..\\..\\..\\cards.img\\Tiger555.png";
             this.pictureBox1.Location = new System.Drawing.Point(901, 0);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(375, 250);
@@ -188,52 +276,32 @@
             this.pictureBox1.TabIndex = 10;
             this.pictureBox1.TabStop = false;
             // 
-            // btn_proceed
+            // lbl_enternamemain
             // 
-            this.btn_proceed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_proceed.BackColor = System.Drawing.Color.White;
-            this.btn_proceed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_proceed.Enabled = false;
-            this.btn_proceed.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btn_proceed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btn_proceed.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btn_proceed.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_proceed.Location = new System.Drawing.Point(553, 339);
-            this.btn_proceed.Name = "btn_proceed";
-            this.btn_proceed.Size = new System.Drawing.Size(100, 50);
-            this.btn_proceed.TabIndex = 9;
-            this.btn_proceed.Text = "Proceed";
-            this.btn_proceed.UseVisualStyleBackColor = false;
-            this.btn_proceed.Visible = false;
-            this.btn_proceed.Click += new System.EventHandler(this.btn_proceed_Click);
+            this.lbl_enternamemain.Enabled = false;
+            this.lbl_enternamemain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_enternamemain.Location = new System.Drawing.Point(713, 112);
+            this.lbl_enternamemain.Name = "lbl_enternamemain";
+            this.lbl_enternamemain.Size = new System.Drawing.Size(133, 14);
+            this.lbl_enternamemain.TabIndex = 8;
+            this.lbl_enternamemain.Text = "Enter your name";
+            this.lbl_enternamemain.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_enternamemain.Visible = false;
             // 
-            // lbl_entername
+            // txt_loginmain
             // 
-            this.lbl_entername.Enabled = false;
-            this.lbl_entername.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_entername.Location = new System.Drawing.Point(537, 295);
-            this.lbl_entername.Name = "lbl_entername";
-            this.lbl_entername.Size = new System.Drawing.Size(133, 14);
-            this.lbl_entername.TabIndex = 8;
-            this.lbl_entername.Text = "Enter your name";
-            this.lbl_entername.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.lbl_entername.Visible = false;
-            // 
-            // txt_entername
-            // 
-            this.txt_entername.Enabled = false;
-            this.txt_entername.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txt_entername.Location = new System.Drawing.Point(537, 312);
-            this.txt_entername.Name = "txt_entername";
-            this.txt_entername.Size = new System.Drawing.Size(133, 21);
-            this.txt_entername.TabIndex = 7;
-            this.txt_entername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txt_entername.Visible = false;
+            this.txt_loginmain.Enabled = false;
+            this.txt_loginmain.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_loginmain.Location = new System.Drawing.Point(713, 129);
+            this.txt_loginmain.Name = "txt_loginmain";
+            this.txt_loginmain.Size = new System.Drawing.Size(133, 21);
+            this.txt_loginmain.TabIndex = 7;
+            this.txt_loginmain.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txt_loginmain.Visible = false;
             // 
             // btn_cardbase
             // 
-            this.btn_cardbase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_cardbase.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_cardbase.BackColor = System.Drawing.Color.White;
             this.btn_cardbase.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -242,34 +310,34 @@
             this.btn_cardbase.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btn_cardbase.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btn_cardbase.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_cardbase.Location = new System.Drawing.Point(553, 168);
+            this.btn_cardbase.Location = new System.Drawing.Point(553, 224);
             this.btn_cardbase.Name = "btn_cardbase";
             this.btn_cardbase.Size = new System.Drawing.Size(100, 50);
             this.btn_cardbase.TabIndex = 6;
             this.btn_cardbase.Text = "Card base";
             this.btn_cardbase.UseVisualStyleBackColor = false;
             // 
-            // btn_start
+            // btn_register
             // 
-            this.btn_start.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_register.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btn_start.BackColor = System.Drawing.Color.White;
-            this.btn_start.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.White;
-            this.btn_start.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
-            this.btn_start.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
-            this.btn_start.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_start.Location = new System.Drawing.Point(553, 56);
-            this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(100, 50);
-            this.btn_start.TabIndex = 5;
-            this.btn_start.Text = "Start new game";
-            this.btn_start.UseVisualStyleBackColor = false;
-            this.btn_start.Click += new System.EventHandler(this.btn_start_Click);
+            this.btn_register.BackColor = System.Drawing.Color.White;
+            this.btn_register.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_register.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_register.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_register.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_register.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_register.Location = new System.Drawing.Point(553, 56);
+            this.btn_register.Name = "btn_register";
+            this.btn_register.Size = new System.Drawing.Size(100, 50);
+            this.btn_register.TabIndex = 5;
+            this.btn_register.Text = "Register";
+            this.btn_register.UseVisualStyleBackColor = false;
+            this.btn_register.Click += new System.EventHandler(this.btn_register_Click);
             // 
             // btn_about
             // 
-            this.btn_about.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_about.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_about.BackColor = System.Drawing.Color.White;
             this.btn_about.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -278,7 +346,7 @@
             this.btn_about.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
             this.btn_about.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
             this.btn_about.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_about.Location = new System.Drawing.Point(553, 112);
+            this.btn_about.Location = new System.Drawing.Point(553, 168);
             this.btn_about.Name = "btn_about";
             this.btn_about.Size = new System.Drawing.Size(100, 50);
             this.btn_about.TabIndex = 4;
@@ -305,7 +373,7 @@
             // 
             // label7
             // 
-            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.label7.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label7.AutoSize = true;
             this.label7.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -502,7 +570,7 @@
             // 
             // btn_endturn
             // 
-            this.btn_endturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_endturn.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_endturn.BackColor = System.Drawing.Color.White;
             this.btn_endturn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -621,7 +689,7 @@
             // 
             // btn_quit
             // 
-            this.btn_quit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_quit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_quit.BackColor = System.Drawing.Color.White;
             this.btn_quit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -639,7 +707,7 @@
             // 
             // btn_playagain
             // 
-            this.btn_playagain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            this.btn_playagain.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.btn_playagain.BackColor = System.Drawing.Color.White;
             this.btn_playagain.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
@@ -654,11 +722,12 @@
             this.btn_playagain.Text = "Play again";
             this.btn_playagain.UseVisualStyleBackColor = false;
             this.btn_playagain.Click += new System.EventHandler(this.btn_playagain_Click);
+            this.btn_playagain.Enabled = false;
             // 
             // lbl_computerpoints
             // 
-            this.lbl_computerpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lbl_computerpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_computerpoints.AutoSize = true;
             this.lbl_computerpoints.Font = new System.Drawing.Font("Stencil", 30.25F);
@@ -670,8 +739,8 @@
             // 
             // label5
             // 
-            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.label5.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Stencil", 30.25F);
@@ -683,8 +752,8 @@
             // 
             // lbl_playerpoints
             // 
-            this.lbl_playerpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lbl_playerpoints.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_playerpoints.AutoSize = true;
             this.lbl_playerpoints.Font = new System.Drawing.Font("Stencil", 30.25F);
@@ -696,8 +765,8 @@
             // 
             // lbl_playername
             // 
-            this.lbl_playername.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lbl_playername.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_playername.AutoSize = true;
             this.lbl_playername.Font = new System.Drawing.Font("Stencil", 30.25F);
@@ -709,8 +778,8 @@
             // 
             // lbl_playerwon
             // 
-            this.lbl_playerwon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lbl_playerwon.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_playerwon.AutoSize = true;
             this.lbl_playerwon.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -720,6 +789,186 @@
             this.lbl_playerwon.Size = new System.Drawing.Size(172, 50);
             this.lbl_playerwon.TabIndex = 12;
             this.lbl_playerwon.Text = "Player";
+            // 
+            // tabpg_register
+            // 
+            this.tabpg_register.Controls.Add(this.btn_regproceed);
+            this.tabpg_register.Controls.Add(this.lbl_email);
+            this.tabpg_register.Controls.Add(this.txt_email);
+            this.tabpg_register.Controls.Add(this.lbl_password);
+            this.tabpg_register.Controls.Add(this.txt_password);
+            this.tabpg_register.Controls.Add(this.lbl_login);
+            this.tabpg_register.Controls.Add(this.txt_login);
+            this.tabpg_register.Controls.Add(this.pictureBox4);
+            this.tabpg_register.Controls.Add(this.pictureBox3);
+            this.tabpg_register.Location = new System.Drawing.Point(4, 22);
+            this.tabpg_register.Name = "tabpg_register";
+            this.tabpg_register.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpg_register.Size = new System.Drawing.Size(1272, 774);
+            this.tabpg_register.TabIndex = 5;
+            this.tabpg_register.Text = "Register";
+            this.tabpg_register.UseVisualStyleBackColor = true;
+            // 
+            // btn_regproceed
+            // 
+            this.btn_regproceed.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_regproceed.BackColor = System.Drawing.Color.White;
+            this.btn_regproceed.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_regproceed.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_regproceed.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_regproceed.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_regproceed.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_regproceed.Location = new System.Drawing.Point(588, 174);
+            this.btn_regproceed.Name = "btn_regproceed";
+            this.btn_regproceed.Size = new System.Drawing.Size(100, 50);
+            this.btn_regproceed.TabIndex = 21;
+            this.btn_regproceed.Text = "Proceed";
+            this.btn_regproceed.UseVisualStyleBackColor = false;
+            this.btn_regproceed.Click += new System.EventHandler(this.btn_regproceed_Click);
+            // 
+            // lbl_email
+            // 
+            this.lbl_email.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_email.Location = new System.Drawing.Point(568, 130);
+            this.lbl_email.Name = "lbl_email";
+            this.lbl_email.Size = new System.Drawing.Size(133, 14);
+            this.lbl_email.TabIndex = 20;
+            this.lbl_email.Text = "Enter your email";
+            this.lbl_email.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // txt_email
+            // 
+            this.txt_email.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_email.Location = new System.Drawing.Point(571, 147);
+            this.txt_email.Name = "txt_email";
+            this.txt_email.Size = new System.Drawing.Size(133, 21);
+            this.txt_email.TabIndex = 19;
+            this.txt_email.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lbl_password
+            // 
+            this.lbl_password.Enabled = false;
+            this.lbl_password.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_password.Location = new System.Drawing.Point(568, 89);
+            this.lbl_password.Name = "lbl_password";
+            this.lbl_password.Size = new System.Drawing.Size(133, 14);
+            this.lbl_password.TabIndex = 18;
+            this.lbl_password.Text = "Enter your password";
+            this.lbl_password.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_password.Visible = false;
+            // 
+            // txt_password
+            // 
+            this.txt_password.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_password.Location = new System.Drawing.Point(571, 106);
+            this.txt_password.Name = "txt_password";
+            this.txt_password.PasswordChar = '*';
+            this.txt_password.Size = new System.Drawing.Size(133, 21);
+            this.txt_password.TabIndex = 17;
+            this.txt_password.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // lbl_login
+            // 
+            this.lbl_login.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_login.Location = new System.Drawing.Point(568, 48);
+            this.lbl_login.Name = "lbl_login";
+            this.lbl_login.Size = new System.Drawing.Size(133, 14);
+            this.lbl_login.TabIndex = 16;
+            this.lbl_login.Text = "Enter your login";
+            this.lbl_login.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_login.Click += new System.EventHandler(this.label8_Click);
+            // 
+            // txt_login
+            // 
+            this.txt_login.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txt_login.Location = new System.Drawing.Point(571, 65);
+            this.txt_login.Name = "txt_login";
+            this.txt_login.Size = new System.Drawing.Size(133, 21);
+            this.txt_login.TabIndex = 15;
+            this.txt_login.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox4.ImageLocation = "..\\..\\..\\..\\cards.img\\Tiger555.png";
+            this.pictureBox4.Location = new System.Drawing.Point(897, 0);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(375, 250);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 14;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pictureBox3.ImageLocation = "..\\..\\..\\..\\cards.img\\IS2.png";
+            this.pictureBox3.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(375, 250);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.TabIndex = 13;
+            this.pictureBox3.TabStop = false;
+            // 
+            // tabpg_loginmenu
+            // 
+            this.tabpg_loginmenu.Controls.Add(this.btn_deckmanager);
+            this.tabpg_loginmenu.Controls.Add(this.btn_playvsai);
+            this.tabpg_loginmenu.Controls.Add(this.lbl_playerlogin);
+            this.tabpg_loginmenu.Location = new System.Drawing.Point(4, 22);
+            this.tabpg_loginmenu.Name = "tabpg_loginmenu";
+            this.tabpg_loginmenu.Padding = new System.Windows.Forms.Padding(3);
+            this.tabpg_loginmenu.Size = new System.Drawing.Size(1272, 774);
+            this.tabpg_loginmenu.TabIndex = 6;
+            this.tabpg_loginmenu.Text = "Log in Menu";
+            this.tabpg_loginmenu.UseVisualStyleBackColor = true;
+            // 
+            // btn_deckmanager
+            // 
+            this.btn_deckmanager.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_deckmanager.BackColor = System.Drawing.Color.White;
+            this.btn_deckmanager.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_deckmanager.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_deckmanager.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_deckmanager.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_deckmanager.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_deckmanager.Location = new System.Drawing.Point(553, 62);
+            this.btn_deckmanager.Name = "btn_deckmanager";
+            this.btn_deckmanager.Size = new System.Drawing.Size(100, 50);
+            this.btn_deckmanager.TabIndex = 11;
+            this.btn_deckmanager.Text = "Deck Manager";
+            this.btn_deckmanager.UseVisualStyleBackColor = false;
+            this.btn_deckmanager.Enabled = false;
+            // 
+            // btn_playvsai
+            // 
+            this.btn_playvsai.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btn_playvsai.BackColor = System.Drawing.Color.White;
+            this.btn_playvsai.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btn_playvsai.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_playvsai.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Black;
+            this.btn_playvsai.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Black;
+            this.btn_playvsai.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_playvsai.Location = new System.Drawing.Point(553, 6);
+            this.btn_playvsai.Name = "btn_playvsai";
+            this.btn_playvsai.Size = new System.Drawing.Size(100, 50);
+            this.btn_playvsai.TabIndex = 10;
+            this.btn_playvsai.Text = "Play vs AI";
+            this.btn_playvsai.UseVisualStyleBackColor = false;
+            this.btn_playvsai.Click += new System.EventHandler(this.btn_playvsai_Click);
+            // 
+            // lbl_playerlogin
+            // 
+            this.lbl_playerlogin.Font = new System.Drawing.Font("Stencil", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_playerlogin.Location = new System.Drawing.Point(1131, 3);
+            this.lbl_playerlogin.Name = "lbl_playerlogin";
+            this.lbl_playerlogin.Size = new System.Drawing.Size(133, 14);
+            this.lbl_playerlogin.TabIndex = 9;
+            this.lbl_playerlogin.Text = "user";
+            this.lbl_playerlogin.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // UserInterface
             // 
@@ -746,6 +995,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.pct_playercity)).EndInit();
             this.tabpg_winmenu.ResumeLayout(false);
             this.tabpg_winmenu.PerformLayout();
+            this.tabpg_register.ResumeLayout(false);
+            this.tabpg_register.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            this.tabpg_loginmenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -755,11 +1009,10 @@
         private System.Windows.Forms.TabPage tabpg_mainmenu;
         private System.Windows.Forms.TabPage tabpg_draftmenu;
         private System.Windows.Forms.Button btn_about;
-        private System.Windows.Forms.Label lbl_entername;
-        private System.Windows.Forms.TextBox txt_entername;
+        private System.Windows.Forms.Label lbl_enternamemain;
+        private System.Windows.Forms.TextBox txt_loginmain;
         private System.Windows.Forms.Button btn_cardbase;
-        private System.Windows.Forms.Button btn_start;
-        private System.Windows.Forms.Button btn_proceed;
+        private System.Windows.Forms.Button btn_register;
         private System.Windows.Forms.TextBox txt_log;
         private System.Windows.Forms.TabPage tabpg_gamemenu;
         private System.Windows.Forms.Label lbl_log;
@@ -800,5 +1053,23 @@
         private System.Windows.Forms.Button btn_quit;
         private System.Windows.Forms.Button btn_quitmain;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Button btn_login;
+        private System.Windows.Forms.TabPage tabpg_register;
+        private System.Windows.Forms.Label lbl_login;
+        private System.Windows.Forms.TextBox txt_login;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label lbl_email;
+        private System.Windows.Forms.TextBox txt_email;
+        private System.Windows.Forms.Label lbl_password;
+        private System.Windows.Forms.MaskedTextBox txt_password;
+        private System.Windows.Forms.Button btn_regproceed;
+        private System.Windows.Forms.Label lbl_passmain;
+        private System.Windows.Forms.MaskedTextBox txt_passmain;
+        private System.Windows.Forms.Button btn_proceedmain;
+        private System.Windows.Forms.TabPage tabpg_loginmenu;
+        private System.Windows.Forms.Label lbl_playerlogin;
+        private System.Windows.Forms.Button btn_deckmanager;
+        private System.Windows.Forms.Button btn_playvsai;
     }
 }

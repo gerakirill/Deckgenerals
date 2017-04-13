@@ -14,10 +14,12 @@ namespace GameClasses
         /// Func adds card to collection
         /// </summary>
         /// <param name="card"></param>
-        public void AddCard(Card card)
+        public virtual void AddCard(Card card)
         {
-            cards.Add(card);
-            cards.Sort();
+            if (card != null)
+            {
+                cards.Add(card);
+            }    
         }
         /// <summary>
         /// Func returns card to remove and removes it from collection
@@ -25,16 +27,12 @@ namespace GameClasses
         /// <returns></returns>
         public Card GiveCard()
         {
-            Card cardToGive = new Card();
+            Card cardToGive = null;
             if (cards.Count>0)
             {
                 cardToGive = (Card)cards[cards.Count - 1].Clone();
                 cards.RemoveAt(cards.Count - 1);                
-            }
-            else
-            {
-                cardToGive = null;
-            }
+            }            
             return cardToGive;
         }
 
@@ -45,14 +43,9 @@ namespace GameClasses
         public void RemoveCard(Card card)
         {
             int index = cards.BinarySearch(card);
-            cards.RemoveAt(index);
+            cards.RemoveAt(index);           
         }
-
-        public int numberOfCards
-        {
-            get { return cards.Count; }
-        }
-
+        
         public List<Card> cardsInCollection
         {
             get
@@ -60,10 +53,14 @@ namespace GameClasses
                 List<Card> newList = new List<Card>(cards.Count);
                 for (int i = 0; i < cards.Count; i++)
                 {
-                    newList.Add((Card)cards[i].Clone());
+                    if (cards[i]!=null)
+                    {
+                        newList.Add((Card)cards[i].Clone());
+                    }                    
                 }
                 return newList;
             }
         }
     }
 }
+

@@ -19,23 +19,62 @@ namespace UserInterface
         tabpg_mainmenu = 0,
         tabpg_draftmenu = 1,
         tabpg_gamemenu = 2,
-        tabpg_winmenu = 3
+        tabpg_winmenu = 3,
+        tabpg_register = 4,
+        tabpg_loginmenu = 5
+
     }
 
-    public delegate void ChoosePlayerNamer(object sender, ChoosePlayerNameEventArgs args);
-    public partial class UserInterface : Form
+    public delegate void PlayerCreater(object sender, CreateNewPlayerEventArgs args);
+    public delegate void LogIner(object sender, LogInPlayerEventArgs args);
+
+
+
+    public partial class UserInterface : Form, IViewable
     {
         public UserInterface()
         {
             InitializeComponent();
         }
 
-        public event ChoosePlayerNamer ProceedClickEvent;
+
+        public UserInterface(GameManager mngr)
+        {
+            InitializeComponent();
+            _mngr = mngr;
+            _mngr.GameSetUpEvent += GameSetUpEventHandler;
+            _mngr.VictoryEvent += VictoryEventHandler;
+            _mngr.CardPlayedEvent += CardPlayedEventHandler;
+            _mngr.StartNewTurnEvent += AIStartNewTurnEventHandler;
+            _mngr.field.FieldChangedEvent += FieldChangedEventHandler;
+            _mngr.EndTurnEvent += EndTurnEventHandler;
+            _mngr.PlayerStartNewTurnEvent += StartNewTurnEventHandler;            
+            
+        }
+
+        public void  SetEvents(GameManager mngr)
+        {
+            _mngr = mngr;
+            _mngr.GameSetUpEvent += GameSetUpEventHandler;
+            _mngr.VictoryEvent += VictoryEventHandler;
+            _mngr.CardPlayedEvent += CardPlayedEventHandler;
+            _mngr.StartNewTurnEvent += AIStartNewTurnEventHandler;
+            _mngr.field.FieldChangedEvent += FieldChangedEventHandler;
+            _mngr.EndTurnEvent += EndTurnEventHandler;
+            _mngr.PlayerStartNewTurnEvent += StartNewTurnEventHandler;            
+            
+        }
+
+        public GameManager _mngr;
+
+        public event PlayerCreater CreateNewPlayerEvent;
+        public event LogIner LogInPlayerEvent;
         public event EventHandler PictureClickEvent;
         public event Action NoCardsLeftEvent;
         public event Action EndTurnClickEvent;
         public event Action PlayAgainEvent;
         public event Action QuitEvent;
+        public event Action StartGameVSAI;
 
         /// <summary>
         /// Func sets active game page
@@ -43,87 +82,34 @@ namespace UserInterface
         /// <param name="page"></param>
         public void SetActivePage(Pages page)
         {
-            _activePageNumber = page;
 
-            switch (page)
-            {
-                case Pages.empty:
-                    break;
-                case Pages.tabpg_mainmenu:
-                    break;
-                case Pages.tabpg_draftmenu:
-                    break;
-                case Pages.tabpg_gamemenu:      //if setting game menu - adding game log and "last picked" picture
-                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(txt_log);
-                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(pct_lastplayed);
-                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(lbl_lastpicked);
-                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(lbl_log);
-                    this.lbl_lastpicked.Text = "Last played";
-                    this.pct_lastplayed.Image = null;
-                    break;
-                case Pages.tabpg_winmenu:
-                    break;
-                default:
-                    break;
-            }
             tabControl1.SelectTab(page.ToString());
         }
-
-        /// <summary>
-        /// Button start event handler
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btn_start_Click(object sender, EventArgs e)
-        {
-            this.lbl_entername.Enabled = true;          //Making visible and enbled buttons "enter name" and "proceed"
-            this.txt_entername.Enabled = true;
-            this.btn_proceed.Enabled = true;
-            this.lbl_entername.Visible = true;
-            this.txt_entername.Visible = true;
-            this.btn_proceed.Visible = true;
-        }
-
-        public void SetVictoryVisual(string playerName, string playerWon, int playerCityStrength, int computerCityStrength)
-        {
-            lbl_playername.Text = playerName;
-            if (playerWon != "DRAW")
-            {
-                lbl_playerwon.Text = playerName + "  WON";
-            }
-            else
-            {
-                lbl_playerwon.Text = playerWon;
-            }
-
-            lbl_playerpoints.Text = playerCityStrength.ToString();
-            lbl_computerpoints.Text = computerCityStrength.ToString();
-
-        }
-
 
         /// <summary>
         /// Func removes all card pictureboxes from form
         /// </summary>
         public void RemoveAllCards()
         {
-            foreach (MyPictureBox card in pictureBoxCards)
+            foreach (MyPictureBox pct in pictureBoxCards)
             {
-                tabControl1.TabPages[_activePageNumber.ToString()].Controls.Remove(card);
+                tabControl1.TabPages[2].Controls.Remove(pct);
             }
-            pictureBoxCards.Clear();
+
+            //foreach (Control ctrl in tabControl1.TabPages)
+            //{
+            //    if (ctrl is MyPictureBox)
+            //    {
+            //        tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls.Remove(ctrl);
+            //    }
+            //}
         }
 
 
         //Procced button event handler
         private void btn_proceed_Click(object sender, EventArgs e)
         {
-            tabControl1.SelectTab(tabpg_draftmenu);
-            if (ProceedClickEvent != null)
-            {
-                ProceedClickEvent(this, new ChoosePlayerNameEventArgs(txt_entername.Text));
-            }
-
+           
         }
 
         /// <summary>
@@ -167,12 +153,9 @@ namespace UserInterface
             int indent = 5;                         //Setting inden between cards
             int i = cardImageWidth + indent;
             int j = indent + 50;
-            int iMax = windowWidth - cardImageWidth - indent;           //if active page - game menu - visualising cards in bottom of window
-            if (_activePageNumber.ToString() == "tabpg_gamemenu")
-            {
-                j = windowHeight - cardImageHeight - indent - 70;
-                iMax = windowWidth - 2 * cardImageWidth - indent;
-            }
+            int iMax = windowWidth - cardImageWidth - indent;
+            j = windowHeight - cardImageHeight - indent - 70;
+            iMax = windowWidth - 2 * cardImageWidth - indent;
             foreach (Card card in cardsList)
             {
                 MyPictureBox picture = new MyPictureBox(card);
@@ -183,7 +166,7 @@ namespace UserInterface
                 if (i < iMax)                                          //if exceedeing borders - start visualise from new line
                 {
                     picture.Location = new Point(i, j);
-                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(picture);
+                    tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls.Add(picture);
                     i += cardImageWidth + indent;
                 }
                 else
@@ -191,12 +174,11 @@ namespace UserInterface
                     i = cardImageWidth + indent;
                     j += cardImageHeight + indent;
                     picture.Location = new Point(i, j);
-                    tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(picture);
+                    tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls.Add(picture);
                     i += cardImageWidth + indent;
                 }
                 pictureBoxCards.Add(picture);
             }
-            tabControl1.Refresh();
 
         }
 
@@ -209,18 +191,18 @@ namespace UserInterface
         {
             MyPictureBox pctBox = sender as MyPictureBox;
             PictureClickEvent(pctBox, new EventArgs());
-            if (pictureBoxCards.Count <= 0)
-            {
-                if (NoCardsLeftEvent != null)
-                {
-                    NoCardsLeftEvent();
-                }
-            }
-            tabControl1.Refresh();
+            //if (pictureBoxCards.Count <= 0)
+            //{
+            //    if (NoCardsLeftEvent != null)
+            //    {
+            //        NoCardsLeftEvent();
+            //    }
+            //}
+            //tabControl1.Refresh();pictureBoxCards.Add(picture);
         }
 
         /// <summary>
-        /// Adding text to log
+        /// Adding text to logb
         /// </summary>
         /// <param name="text">Text to add</param>
         public void AddToLog(string text)
@@ -236,9 +218,12 @@ namespace UserInterface
         private void btn_endturn_Click(object sender, EventArgs e)
         {
             this.btn_endturn.Enabled = false;
-            foreach (MyPictureBox card in pictureBoxCards)
+            foreach (Control ctrl in tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls)
             {
-                card.Enabled = false;
+                if (ctrl is MyPictureBox)
+                {
+                    ctrl.Enabled = false;
+                }
             }
             if (EndTurnClickEvent != null)
             {
@@ -250,9 +235,12 @@ namespace UserInterface
         public void StartTurn()
         {
             this.btn_endturn.Enabled = true;
-            foreach (MyPictureBox card in pictureBoxCards)
+            foreach (Control ctrl in tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls)
             {
-                card.Enabled = true;
+                if (ctrl is MyPictureBox)
+                {
+                    ctrl.Enabled = true;
+                }
             }
         }
 
@@ -284,7 +272,6 @@ namespace UserInterface
         {
             SetButtonBackColor(armorOccupiedByPlayer, btn_armoroccupied);
             SetButtonBackColor(infantryOccupiedByPlayer, btn_infantryoccupied);
-            tabControl1.Refresh();
         }
 
         /// <summary>
@@ -348,38 +335,177 @@ namespace UserInterface
                 QuitEvent();
             }
         }
-       
+
         public List<MyPictureBox> pictureBoxCards = new List<MyPictureBox>(0);
 
-        private Pages _activePageNumber = Pages.tabpg_mainmenu;
 
-        public void RemoveCard(MyPictureBox pctr)
+        public void RemoveCard(Card card)
         {
-            tabControl1.TabPages[_activePageNumber.ToString()].Controls.Remove(pctr);
-            pictureBoxCards.Remove(pctr);
-        }
 
-        public void AddNewLog()
-        {
-            tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(txt_log);
-            tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(lbl_lastpicked);
-            pct_lastplayed.Image = null;
-            tabControl1.TabPages[_activePageNumber.ToString()].Controls.Add(pct_lastplayed);
-            lbl_lastpicked.Text = "Last picked";
-            txt_log.Clear();
+            foreach (Control ctrl in tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls)
+            {
+                if (ctrl is MyPictureBox)
+                {
+                    MyPictureBox pctr = ctrl as MyPictureBox;
+                    if (card.NameOfCard == pctr._card.NameOfCard)
+                    {
+                        tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls.Remove(ctrl);
+                        pictureBoxCards.Remove(pctr);
+                        break;
+                    }
+                }
+            }
         }
 
         private void btn_about_Click(object sender, EventArgs e)
         {
 
         }
-    }
-    public class ChoosePlayerNameEventArgs
-    {
-        public ChoosePlayerNameEventArgs(string playerName)
+
+        public void CardPlayedEventHandler(object sender, CardPlayedEventArgs args)
         {
-            _playerName = playerName;
+            _mngr = sender as GameManager;
+            ShowLastPlayedCard(args._card);
+            RemoveCard(args._card);
+
+            UpdateCityVisual(_mngr.player1.cityCard.StrengthOfCard, _mngr.computerPlayer.cityCard.StrengthOfCard);
+            UpdateFieldVisual(_mngr.field.GetArmorCard(), _mngr.field.GetInfantryCard());
+            UpdatePlayerInfoVisual(_mngr.player1.resourceQuantity, _mngr.computerPlayer.resourceQuantity, _mngr.computerPlayer.playerHand.cardsInCollection.Count);
         }
-        public string _playerName { get; private set; }
+
+        public void AIStartNewTurnEventHandler(object sender, EventArgs args)
+        {
+            _mngr = sender as GameManager;
+            UpdatePlayerInfoVisual(_mngr.player1.resourceQuantity, _mngr.computerPlayer.resourceQuantity, _mngr.computerPlayer.playerHand.cardsInCollection.Count);
+        }
+
+        public void StartNewTurnEventHandler(object sender, EventArgs args)
+        {
+            RemoveAllCards();
+            _mngr = sender as GameManager;
+            ShowCards(_mngr.player1.playerHand.cardsInCollection);
+            UpdatePlayerInfoVisual(_mngr.player1.resourceQuantity, _mngr.computerPlayer.resourceQuantity, _mngr.computerPlayer.playerHand.cardsInCollection.Count);
+            this.btn_endturn.Enabled = true;
+            foreach (Control ctrl in tabControl1.TabPages[Pages.tabpg_gamemenu.ToString()].Controls)
+            {
+                if (ctrl is MyPictureBox)
+                {
+                    ctrl.Enabled = true;
+                }
+            }
+        }
+
+        public void EndTurnEventHandler(object sender, EventArgs args)
+        {
+            _mngr = sender as GameManager;
+            UpdateCityVisual(_mngr.player1.cityCard.StrengthOfCard, _mngr.computerPlayer.cityCard.StrengthOfCard);
+        }
+
+        public void VictoryEventHandler(object sender, VictoryEventArgs e)
+        {
+
+            _mngr = sender as GameManager;
+            lbl_playername.Text = e._whoWon;
+            lbl_playerpoints.Text = _mngr.player1.cityCard.StrengthOfCard.ToString();
+            lbl_computerpoints.Text = _mngr.computerPlayer.cityCard.StrengthOfCard.ToString();
+            SetActivePage(Pages.tabpg_winmenu);
+        }
+
+        public void GameSetUpEventHandler(object sender, EventArgs e)
+        {
+            _mngr = sender as GameManager;
+            SetCityVisual(_mngr.player1.cityCard, _mngr.computerPlayer.cityCard);
+            tabControl1.SelectTab(Pages.tabpg_gamemenu.ToString());
+        }
+
+        public void FieldChangedEventHandler(object sender, EventArgs e)
+        {
+            Field fld = sender as Field;
+            UpdateFieldVisual(fld.GetArmorCard(), fld.GetInfantryCard());
+            UpdateButtonVisual(fld.armorOccupiedByPlayer, fld.infantryOccupiedByPlayer);
+        }
+
+        private void label8_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btn_regproceed_Click(object sender, EventArgs e)
+        {
+            if (CreateNewPlayerEvent != null)
+            {
+                CreateNewPlayerEvent(this, new CreateNewPlayerEventArgs(txt_login.Text, txt_password.Text, txt_email.Text));
+            }
+        }
+
+        public void ShowMessage(string text)
+        {
+            MessageBox.Show(text);
+        }
+
+        public void UserCreatedEventHandler()
+        {
+            SetActivePage(Pages.tabpg_mainmenu);
+        }
+
+        private void btn_register_Click(object sender, EventArgs e)
+        {
+            SetActivePage(Pages.tabpg_register);           
+        }
+
+        private void btn_login_Click(object sender, EventArgs e)
+        {
+            txt_loginmain.Enabled = true;
+            txt_loginmain.Visible = true;
+            txt_passmain.Enabled = true;
+            txt_passmain.Visible = true;
+            lbl_passmain.Visible = true;
+            lbl_passmain.Enabled = true;
+            lbl_enternamemain.Visible = true;
+            lbl_enternamemain.Enabled = true;
+            btn_proceedmain.Visible = true;
+            btn_proceedmain.Enabled = true;
+        }
+
+        private void btn_proceedmain_Click(object sender, EventArgs e)
+        {
+            if (LogInPlayerEvent != null)
+            {
+                LogInPlayerEvent(this, new LogInPlayerEventArgs(txt_loginmain.Text, txt_passmain.Text));
+            }
+        }
+
+        private void btn_playvsai_Click(object sender, EventArgs e)
+        {
+            if (StartGameVSAI != null)
+            {
+                StartGameVSAI();
+            }
+
+        }
+    }
+    public class CreateNewPlayerEventArgs
+    {
+        public CreateNewPlayerEventArgs(string login, string pass, string email)
+        {
+            playerLogin = login;
+            playerPassword = pass;
+            playerEmail = email;
+        }
+        public string playerLogin { get; private set; }
+        public string playerPassword { get; private set; }
+        public string playerEmail { get; private set; }
+    }
+
+    public class LogInPlayerEventArgs
+    {
+        public LogInPlayerEventArgs(string login, string pass)
+        {
+            playerLogin = login;
+            playerPassword = pass;
+        }
+        public string playerLogin { get; private set; }
+        public string playerPassword { get; private set; }
+
     }
 }

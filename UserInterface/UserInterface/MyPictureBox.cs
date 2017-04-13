@@ -9,7 +9,7 @@ using GameClasses;
 namespace UserInterface
 {
     /// <summary>
-    /// Modified MyPictureBox to keep the cad in it
+    /// Modified MyPictureBox to keep the card in it
     /// </summary>
     public class MyPictureBox : PictureBox
     {

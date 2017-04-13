@@ -10,10 +10,10 @@ namespace GameClasses
     {        
         public string playerName;                    //Player name
         public int resourceQuantity = 1;             //Number of player resources         
-        public Hand playerHand;                      //Player "hand" of pictureBoxCards
+        public Hand playerHand = new Hand();         //Player "hand" of pictureBoxCards
         public Card cityCard;                        //Player city card
         public Deck playerDeck;                      //Player "hand" of pictureBoxCards
-        public bool tookCard = false;                //If player took card this turn 
+        public bool moved = false;                
 
 
         /// <summary>
