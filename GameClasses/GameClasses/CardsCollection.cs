@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,7 +10,7 @@ namespace GameClasses
     /// <summary>
     /// Base class for any class, containing card collection
     /// </summary>
-    public class CardsCollection
+    public class CardsCollection : IEnumerable
     {
         
         /// <summary>
@@ -62,6 +63,11 @@ namespace GameClasses
                 }
                 return newList;
             }
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return cardsInCollection.GetEnumerator();
         }
 
         protected List<Card> _cards = new List<Card>(0);    //Array of Cards in collection

@@ -30,9 +30,8 @@ namespace UserInterface
             _logInManager.DeckCreateSuccess += CancelNewDeckEventHandler;
 
         }
-
         #region Deck manager event handlers
-        
+
 
         /// <summary>
         /// Go back to main menu

@@ -457,7 +457,7 @@ namespace GameClasses
 
         public void OpenConnection()
         {
-
+            //
             //connect = new SqlConnection("Data Source=DESKTOP-MD9J02F;Initial Catalog=PlayersDecks;Integrated Security=True");
             string dataSource = Path.GetFullPath(Path.Combine(Application.StartupPath, @"..\..\..\..\GameClasses\GameClasses\AppData\PlayersDecks.mdf"));
             string connection = string.Format("Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename='{0}';Integrated Security=True;Connect Timeout=30", dataSource);

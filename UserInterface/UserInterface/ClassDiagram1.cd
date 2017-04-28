@@ -1,0 +1,291 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="supreme controller">
+    <Position X="5.823" Y="0.862" Height="0.293" Width="1.308" />
+  </Comment>
+  <Comment CommentText="Deck manager interface">
+    <Position X="9.323" Y="0.916" Height="0.293" Width="1.583" />
+  </Comment>
+  <Comment CommentText="Game model">
+    <Position X="9.156" Y="2.406" Height="0.293" Width="1.583" />
+  </Comment>
+  <Comment CommentText="Game view">
+    <Position X="7.369" Y="3.909" Height="0.293" Width="0.812" />
+  </Comment>
+  <Comment CommentText="Game controller">
+    <Position X="11.066" Y="3.911" Height="0.293" Width="1.086" />
+  </Comment>
+  <Comment CommentText="Main menu view">
+    <Position X="2.893" Y="2.123" Height="0.293" Width="1.334" />
+  </Comment>
+  <Comment CommentText="Main menu model">
+    <Position X="3.639" Y="3.391" Height="0.293" Width="1.334" />
+  </Comment>
+  <Comment CommentText="Shop view">
+    <Position X="6.563" Y="6.185" Height="0.293" Width="0.786" />
+  </Comment>
+  <Comment CommentText="Shop model">
+    <Position X="4.333" Y="4.842" Height="0.293" Width="1.021" />
+  </Comment>
+  <Comment CommentText="Shop controller">
+    <Position X="2.364" Y="6.176" Height="0.293" Width="1.217" />
+  </Comment>
+  <Comment CommentText="Survey classes">
+    <Position X="12.334" Y="5.049" Height="0.293" Width="4.899" />
+  </Comment>
+  <Class Name="UserInterface.BoosterPictureBox" Collapsed="true">
+    <Position X="5.5" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQ=</HashCode>
+      <FileName>BoosterPictureBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface.CreateDeckEventargs" Collapsed="true">
+    <Position X="14" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAo=</HashCode>
+      <FileName>CreateDeckEventargs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface.CreateNewPlayerEventArgs" Collapsed="true">
+    <Position X="15.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAIA=</HashCode>
+      <FileName>CreateNewPlayerEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface.DeckManagerInterface" Collapsed="true">
+    <Position X="9.25" Y="1.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IoAACAkAACAgAAwQgCCYAAECAAADQAECAECQFIAYAAI=</HashCode>
+      <FileName>DeckManagerInterface.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface.DeckPictureBox" Collapsed="true">
+    <Position X="0.5" Y="5.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhAAAAAAAA=</HashCode>
+      <FileName>DeckPictureBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface.GameController" Collapsed="true">
+    <Position X="10.5" Y="4.25" Width="1.5" />
+    <AssociationLine Name="_mngr" Type="GameClasses.GameManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.2" Y="0.537" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_UI" Type="UserInterface.GameMenuInterface" FixedFromPoint="true">
+      <Path>
+        <Point X="10.5" Y="4.562" />
+        <Point X="9" Y="4.562" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.506" Y="-0.107" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAYCACAAAAAAAAAAAAAAAAAAAAJACAAAAAAAAAAAA=</HashCode>
+      <FileName>GameController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_mngr" />
+      <Field Name="_UI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UserInterface.GameMenuInterface" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.5" Y="4.25" Width="1.5" />
+    <AssociationLine Name="_gameMngr" Type="GameClasses.GameManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.485" Y="-0.075" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_pictureBoxCards" Type="UserInterface.MyPictureBox" ManuallyRouted="true" FixedFromPoint="true">
+      <Path>
+        <Point X="8.125" Y="4.941" />
+        <Point X="8.125" Y="5.5" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.608" Y="0.228" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>sEEAQcBwQCRKgRQgAADISEICAQIAQAAQEskwACJAEhA=</HashCode>
+      <FileName>GameMenuInterface.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gameMngr" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_pictureBoxCards" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="1.218" />
+  </Class>
+  <Class Name="UserInterface.LoginController" Collapsed="true">
+    <Position X="5.75" Y="1.25" Width="1.5" />
+    <AssociationLine Name="_gameI" Type="UserInterface.GameMenuInterface">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.321" Y="0.227" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_mainMenuI" Type="UserInterface.MainMenuInterface" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.938" Y="1.812" />
+        <Point X="5.938" Y="2.846" />
+        <Point X="4.25" Y="2.846" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.36" Y="-0.086" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_deckMangerI" Type="UserInterface.DeckManagerInterface">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.593" Y="-0.084" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_logInManager" Type="GameClasses.LoginManager" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="6.125" Y="1.812" />
+        <Point X="6.125" Y="4.2" />
+        <Point X="4.25" Y="4.2" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.371" Y="-0.071" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>yAEIQCAABBAAAEAAIAAAAACAoIAAAYAQGAAAABAABEw=</HashCode>
+      <FileName>LoginController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_gameI" />
+      <Field Name="_mainMenuI" />
+      <Field Name="_deckMangerI" />
+      <Field Name="_logInManager" />
+      <Field Name="_shopI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UserInterface.LogInPlayerEventArgs" Collapsed="true">
+    <Position X="12.25" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAA=</HashCode>
+      <FileName>LogInPlayerEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface.MainMenuInterface" Collapsed="true">
+    <Position X="2.75" Y="2.5" Width="1.5" />
+    <AssociationLine Name="_pictureBoxDecks" Type="UserInterface.DeckPictureBox">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.501" Y="1.455" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="currentPage" Type="UserInterface.Pages" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3.094" Y="3.191" />
+        <Point X="3.094" Y="3.331" />
+        <Point X="2" Y="3.331" />
+        <Point X="2" Y="4.75" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.543" Y="0.452" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>QEGFI5iAAKKiQRFBgAGESAgCAw4WABIADVI8AiB8BAM=</HashCode>
+      <FileName>MainMenuInterface.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_loginMngr" />
+      <Field Name="currentPage" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Field Name="_pictureBoxDecks" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="UserInterface.MyPictureBox" Collapsed="true">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MyPictureBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="UserInterface.ShopController" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <AssociationLine Name="_shopMngr" Type="GameClasses.ShopManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.384" Y="0.254" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAIAAAABAAAAAAIAAAAAAAAAAAAAAAAAYAAAACAAAQ=</HashCode>
+      <FileName>ShopController.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_shopMngr" />
+      <Field Name="_shopI" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="UserInterface.ShopInterface" Collapsed="true">
+    <Position X="5.5" Y="6.5" Width="1.5" />
+    <AssociationLine Name="_pictureBoosters" Type="UserInterface.BoosterPictureBox">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.593" Y="0.188" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>IACAAAAAAWAgAAAAAACBAAACAoIAAAAAAAAECAAQAAA=</HashCode>
+      <FileName>ShopInterface.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_pictureBoosters" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="GameClasses.GameManager" Collapsed="true">
+    <Position X="9.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameClasses.ShopManager" Collapsed="true">
+    <Position X="4" Y="5.25" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Class Name="GameClasses.LoginManager" Collapsed="true">
+    <Position X="2.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier />
+  </Class>
+  <Interface Name="UserInterface.IGameViewable" Collapsed="true">
+    <Position X="15.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIBwAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>IGameViewable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="UserInterface.Pages" Collapsed="true">
+    <Position X="1.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAEAAACAAAAAAAADAAAAAAAAAE=</HashCode>
+      <FileName>MainMenuInterface.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="UserInterface.NewDeckCreater" Collapsed="true">
+    <Position X="14" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAABAAA=</HashCode>
+      <FileName>CreateDeckEventargs.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="UserInterface.PlayerCreater" Collapsed="true">
+    <Position X="15.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAEAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainMenuInterface.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="UserInterface.LogIner" Collapsed="true">
+    <Position X="12.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>MainMenuInterface.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

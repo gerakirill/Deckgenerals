@@ -51,7 +51,7 @@ namespace GameClasses
     /// <summary>
     /// Class describes Deck
     /// </summary>
-    public class Deck : CardsCollection, IEnumerable, ICloneable
+    public class Deck : CardsCollection, ICloneable
     {
 
         public Deck()
@@ -218,12 +218,7 @@ namespace GameClasses
                 deckName = value;
             }
         }
-
-        public IEnumerator GetEnumerator()
-        {
-            return cardsInCollection.GetEnumerator();
-        }
-
+        
         private const int COMMON_CARD_LIMIT = 4;                //Card number in deck limit for Common cards
         private const int RARE_CARD_LIMIT = 3;                  //Card number in deck limit for Rare cards
         private const int UNIQUE_CARD_LIMIT = 2;                //Card number in deck limit for Unique cards

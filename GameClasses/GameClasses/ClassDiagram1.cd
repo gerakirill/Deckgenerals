@@ -1,0 +1,270 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Comment CommentText="Game process manager">
+    <Position X="1.619" Y="0.646" Height="0.302" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Main menu manager">
+    <Position X="5.205" Y="0.649" Height="0.302" Width="1.7" />
+  </Comment>
+  <Comment CommentText=" Shop menu manager">
+    <Position X="7.391" Y="0.642" Height="0.302" Width="1.7" />
+  </Comment>
+  <Comment CommentText="Survey classes">
+    <Position X="9.309" Y="2.582" Height="0.302" Width="5.159" />
+  </Comment>
+  <Class Name="GameClasses.BoosterDeck" Collapsed="true">
+    <Position X="0.5" Y="8.25" Width="1.5" />
+    <AssociationLine Name="_bType" Type="GameClasses.BoosterType">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.264" Y="0.161" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>EAAgAAAAAAAAAAAAAAAAACAAAIAAgAAAAAAAICAEABA=</HashCode>
+      <FileName>BoosterDeck.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_bType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameClasses.Card" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="6.5" Y="5" Width="1.5" />
+    <AssociationLine Name="_cardAbility" Type="GameClasses.AbilityTypes">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.436" Y="0.474" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_cardRarity" Type="GameClasses.CardRarity">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.516" Y="0.515" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_cardType" Type="GameClasses.CardTypes">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.405" Y="0.484" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>BAQACAgAAAAAAAQgIAAgAAAAQIiQFQAAAAAJAAACChI=</HashCode>
+      <FileName>Card.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_cardAbility" />
+      <Field Name="_cardRarity" />
+      <Field Name="_cardType" />
+    </ShowAsAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameClasses.CardPlayedEventArgs" Collapsed="true">
+    <Position X="9.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CardPlayedEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClasses.CardsCollection" Collapsed="true">
+    <Position X="1.75" Y="5" Width="1.5" />
+    <AssociationLine Name="_cards" Type="GameClasses.Card">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="1.24" Y="-0.073" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAQAAAAABQAAAAAAABAAAAAAEAAAAAAAAAAAAA=</HashCode>
+      <FileName>CardsCollection.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Field Name="_cards" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameClasses.Deck" Collapsed="true">
+    <Position X="0.5" Y="7" Width="1.5" />
+    <InheritanceLine Type="GameClasses.CardsCollection" FixedToPoint="true">
+      <Path>
+        <Point X="2.5" Y="5.562" />
+        <Point X="2.5" Y="5.937" />
+        <Point X="1.25" Y="5.937" />
+        <Point X="1.25" Y="7" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAIAAAAAgAAAFAAAAAAAAAAGAQBABAAAAAAAAAADA=</HashCode>
+      <FileName>Deck.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="GameClasses.Field" Collapsed="true">
+    <Position X="0.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAgIAAIAAAAAAAAAAAAgAAQGAAAAEAAQAAAA=</HashCode>
+      <FileName>Field.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClasses.GameManager" Collapsed="true">
+    <Position X="1.75" Y="1" Width="1.5" />
+    <AssociationLine Name="computerPlayer" Type="GameClasses.Player">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.463" Y="0.279" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="player1" Type="GameClasses.Player">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.38" Y="0.591" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>gACAAgQACAQABQAAAAABAAAAAQBBIAgAAgAABAgAAAE=</HashCode>
+      <FileName>GameManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="computerPlayer" />
+      <Field Name="field" />
+      <Field Name="player1" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameClasses.Hand" Collapsed="true">
+    <Position X="2.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Hand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClasses.LoginManager" Collapsed="true">
+    <Position X="5.25" Y="1" Width="1.5" />
+    <AssociationLine Name="_plyr" Type="GameClasses.Player" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="5.25" Y="1.312" />
+        <Point X="4.875" Y="1.312" />
+        <Point X="4.875" Y="2.469" />
+        <Point X="4.5" Y="2.469" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="0.118" Y="0.517" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="_sql" Type="GameClasses.SQLManager">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.194" Y="0.279" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAABoAABBAQIAIAAAAAAgAAAAgAgQAAQEQAAQ=</HashCode>
+      <FileName>LoginManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_plyr" />
+      <Field Name="_sql" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameClasses.Player" Collapsed="true">
+    <Position X="3" Y="2.25" Width="1.5" />
+    <AssociationLine Name="playerDeck" Type="GameClasses.Deck" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="3" Y="2.563" />
+        <Point X="2.25" Y="2.563" />
+        <Point X="2.25" Y="3.062" />
+        <Point X="0.625" Y="3.062" />
+        <Point X="0.625" Y="7" />
+      </Path>
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.45" Y="2.412" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <AssociationLine Name="playerHand" Type="GameClasses.Hand">
+      <MemberNameLabel ManuallyPlaced="true">
+        <Position X="-0.432" Y="1.904" />
+      </MemberNameLabel>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAIAAAACgAAIgAEAABAAAAAAAAAAAAAAAAAgAQA=</HashCode>
+      <FileName>Player.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="playerDeck" />
+      <Field Name="playerHand" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameClasses.Rand" Collapsed="true">
+    <Position X="13" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Rand.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClasses.ShopManager" Collapsed="true">
+    <Position X="7.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAABAAAAAAAIAAAIAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>ShopManager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_sql" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="GameClasses.SQLManager" Collapsed="true">
+    <Position X="5.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAUCAAAAAAAAAwYAAABAABQgBAAABEQQAABAAAAA=</HashCode>
+      <FileName>SQLManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClasses.User" Collapsed="true">
+    <Position X="13" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAAAAAAAkAAAAAAAAAAAAAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="GameClasses.VictoryEventArgs" Collapsed="true">
+    <Position X="11.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAA=</HashCode>
+      <FileName>VictoryEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="GameClasses.CardTypes" Collapsed="true">
+    <Position X="6.5" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAAACIACAAAAACAAAAAAABAAAAA=</HashCode>
+      <FileName>Deck.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameClasses.AbilityTypes" Collapsed="true">
+    <Position X="4.75" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAEAAAAAAAAAAAAQAACAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deck.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameClasses.CardRarity" Collapsed="true">
+    <Position X="8.25" Y="6.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAAAAAAAAAAAAAQAAAAAAACgAIAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Deck.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="GameClasses.BoosterType" Collapsed="true">
+    <Position X="0.5" Y="9.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAIAAAAAAAAAAACAAAAQAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ShopManager.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Delegate Name="GameClasses.VictorySetter" Collapsed="true">
+    <Position X="11.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAACAAAAAQAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Delegate Name="GameClasses.CardPlayer" Collapsed="true">
+    <Position X="9.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAAAAAQAAAAA=</HashCode>
+      <FileName>GameManager.cs</FileName>
+    </TypeIdentifier>
+  </Delegate>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
