@@ -6,10 +6,12 @@ using System.Threading.Tasks;
 
 namespace GameClasses
 {
+    /// <summary>
+    /// Base class for any class, containing card collection
+    /// </summary>
     public class CardsCollection
     {
-        protected List<Card> cards = new List<Card>(0);    //Array of Cards in hand
-
+        
         /// <summary>
         /// Func adds card to collection
         /// </summary>
@@ -18,7 +20,7 @@ namespace GameClasses
         {
             if (card != null)
             {
-                cards.Add(card);
+                _cards.Add((Card)card.Clone());
             }    
         }
         /// <summary>
@@ -28,10 +30,10 @@ namespace GameClasses
         public Card GiveCard()
         {
             Card cardToGive = null;
-            if (cards.Count>0)
+            if (_cards.Count > 0)
             {
-                cardToGive = (Card)cards[cards.Count - 1].Clone();
-                cards.RemoveAt(cards.Count - 1);                
+                cardToGive = (Card)_cards[_cards.Count - 1].Clone();
+                _cards.RemoveAt(_cards.Count - 1);                
             }            
             return cardToGive;
         }
@@ -42,25 +44,27 @@ namespace GameClasses
         /// <param name="card">Card to remove</param>
         public void RemoveCard(Card card)
         {
-            int index = cards.BinarySearch(card);
-            cards.RemoveAt(index);           
+            int index = _cards.BinarySearch(card);
+            _cards.RemoveAt(index);           
         }
         
         public List<Card> cardsInCollection
         {
             get
             {
-                List<Card> newList = new List<Card>(cards.Count);
-                for (int i = 0; i < cards.Count; i++)
+                List<Card> newList = new List<Card>(_cards.Count);
+                for (int i = 0; i < _cards.Count; i++)
                 {
-                    if (cards[i]!=null)
+                    if (_cards[i]!=null)
                     {
-                        newList.Add((Card)cards[i].Clone());
+                        newList.Add((Card)_cards[i].Clone());
                     }                    
                 }
                 return newList;
             }
         }
+
+        protected List<Card> _cards = new List<Card>(0);    //Array of Cards in collection
     }
 }
 

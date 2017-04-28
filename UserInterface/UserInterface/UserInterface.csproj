@@ -11,6 +11,21 @@
     <AssemblyName>UserInterface</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -49,25 +64,95 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controller.cs" />
-    <Compile Include="LoginController.cs" />
-    <Compile Include="UserInterfaceForm.cs">
+    <Compile Include="BoosterPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CreateDeckEventargs.cs" />
+    <Compile Include="CreateNewPlayerEventArgs.cs" />
+    <Compile Include="DeckManagerInterface.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="UserInterfaceForm.Designer.cs">
-      <DependentUpon>UserInterfaceForm.cs</DependentUpon>
+    <Compile Include="DeckManagerInterface.Designer.cs">
+      <DependentUpon>DeckManagerInterface.cs</DependentUpon>
     </Compile>
-    <Compile Include="IViewable.cs" />
+    <Compile Include="DeckPictureBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="GameController.cs" />
+    <Compile Include="GameMenuInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="GameMenuInterface.Designer.cs">
+      <DependentUpon>GameMenuInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LoginController.cs" />
+    <Compile Include="LogInPlayerEventArgs.cs" />
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+    <Compile Include="MainMenuInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MainMenuInterface.Designer.cs">
+      <DependentUpon>MainMenuInterface.cs</DependentUpon>
+    </Compile>
+    <Compile Include="IGameViewable.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="MyPictureBox.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ShopController.cs" />
+    <Compile Include="ShopInterface.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ShopInterface.Designer.cs">
+      <DependentUpon>ShopInterface.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="UserInterfaceForm.resx">
-      <DependentUpon>UserInterfaceForm.cs</DependentUpon>
+    <EmbeddedResource Include="DeckManagerInterface.resx">
+      <DependentUpon>DeckManagerInterface.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="GameMenuInterface.resx">
+      <DependentUpon>GameMenuInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MainMenuInterface.resx">
+      <DependentUpon>MainMenuInterface.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ShopInterface.resx">
+      <DependentUpon>ShopInterface.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5.2">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5.2 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

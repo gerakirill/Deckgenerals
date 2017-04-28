@@ -6,7 +6,9 @@ using System.Threading.Tasks;
 
 namespace GameClasses
 {
-
+    /// <summary>
+    /// Class describes Game field
+    /// </summary>
     public class Field
     {
         /// <summary>
@@ -25,25 +27,7 @@ namespace GameClasses
         public string infantryOccupiedByPlayer { get; private set; }    //Infantry card filed owns to player
 
 
-        public Card GetArmorCard()
-        {
-            Card returnCard = new Card();
-            if (_armorCard != null)
-            {
-                returnCard = (Card)_armorCard.Clone();
-            }
-            return returnCard;
-        }
 
-        public Card GetInfantryCard()
-        {
-            Card returnCard = new Card();
-            if (_infantryCard != null)
-            {
-                returnCard = (Card)_infantryCard.Clone();
-            }
-            return returnCard;
-        }
 
         /// <summary>
         /// Func gets the type of played card and chooses an action
@@ -83,45 +67,45 @@ namespace GameClasses
         {
             Card cardToAct = new Card();
             string cardOccupied;
-            if (card.TypeOfCard == CardTypes.armor)
+            if (card.TypeOfCard == CardTypes.armor)             //Discovering what type of card is played 
             {
-                cardToAct = _armorCard;
+                cardToAct = _armorCard;                         //Setting on what field will this card act
                 cardOccupied = armorOccupiedByPlayer;
             }
             else
             {
-                cardToAct = _infantryCard;
+                cardToAct = _infantryCard;                      //Setting on what field will this card act
                 cardOccupied = infantryOccupiedByPlayer;
             }
-            if (cardToAct != null)
+            if (cardToAct != null)                              
             {
-                if (playerName == cardOccupied)
+                if (playerName == cardOccupied)                //If field belongs to the player, which played card then changing the card in field
                 {
                     cardToAct = card;
                 }
-                else
+                else                                           //Else - calculating damage dealt to card in field
                 {
-                    if (card.AttackOfCard > cardToAct.StrengthOfCard)
-                    {
+                    if (card.AttackOfCard > cardToAct.StrengthOfCard)       //IF attack of played card is bigger then strength of card in field 
+                    {                                                       //setting played cad to the field
                         cardToAct = card;
                         cardOccupied = playerName;
                     }
                     else
                     {
-                        if (card.AttackOfCard < cardToAct.StrengthOfCard)
-                        {
+                        if (card.AttackOfCard < cardToAct.StrengthOfCard)   //If attack of played card is less then strength of card in field 
+                        {                                                   //substract card attack value from the cad in field
                             cardToAct.ChangeCardStrength(-card.AttackOfCard);
                         }
                         else
                         {
-                            cardToAct = null;
-                            cardOccupied = null;
+                            cardToAct = null;                               //If attack of played card is even with the strength of card in field
+                            cardOccupied = null;                            //Setting field value to null
                         }
                     }
                 }
             }
             else
-            {
+            {                                                   //If field is empty setting played card to the field
                 cardToAct = card;
                 cardOccupied = playerName;
             }
@@ -136,7 +120,28 @@ namespace GameClasses
                 _infantryCard = cardToAct;
                 infantryOccupiedByPlayer = cardOccupied;
             }
-            FieldChangedEvent(this, new EventArgs());
+
+            FieldChangedEvent(this, new EventArgs());             //Field changed event
+        }
+
+        public Card GetArmorCard()
+        {
+            Card returnCard = new Card();
+            if (_armorCard != null)
+            {
+                returnCard = (Card)_armorCard.Clone();
+            }
+            return returnCard;
+        }
+
+        public Card GetInfantryCard()
+        {
+            Card returnCard = new Card();
+            if (_infantryCard != null)
+            {
+                returnCard = (Card)_infantryCard.Clone();
+            }
+            return returnCard;
         }
 
         public EventHandler FieldChangedEvent;

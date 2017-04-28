@@ -13,14 +13,15 @@ namespace GameClasses
         public Hand playerHand = new Hand();         //Player "hand" of pictureBoxCards
         public Card cityCard;                        //Player city card
         public Deck playerDeck;                      //Player "hand" of pictureBoxCards
+        private int _points;
         public bool moved = false;                
 
-
+        
         /// <summary>
-        /// Returns true if card can be played
+        /// Func checks if player have enough resources to play card
         /// </summary>
-        /// <param name="card"></param>
-        /// <returns></returns>
+        /// <param name="card">Card to play</param>
+        /// <returns>true if card can be played, false if not </returns>
         public bool CanBePlayed(Card card)
         {
             bool ifCan = false;
@@ -29,6 +30,18 @@ namespace GameClasses
                 ifCan = true;
             }
             return ifCan;
+        }
+
+        public int Points
+        {
+            get
+            {
+                return _points;
+            }
+            set
+            {
+                _points = value;
+            }
         }
     }
 }

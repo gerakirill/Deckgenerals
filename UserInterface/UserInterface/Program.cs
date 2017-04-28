@@ -19,9 +19,8 @@ namespace UserInterface
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             LoginManager mng = new LoginManager();            
-            UserInterface user = new UserInterface();
-            LoginController cntrl = new LoginController(user, mng);           
-            //Controller cntrl1 = new Controller(user, mng);
+            MainMenuInterface user = new MainMenuInterface();
+            LoginController cntrl = new LoginController(user, mng);
             Application.Run(user);
 
         }

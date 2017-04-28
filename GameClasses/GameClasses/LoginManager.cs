@@ -7,20 +7,21 @@ using System.Threading.Tasks;
 namespace GameClasses
 {
     /// <summary>
-    /// Manager in main menu of gme 
+    /// Manager in main menu of game 
     /// </summary>
     public class LoginManager
     {
         public LoginManager()
         {
             _sql.UserCreated += UserCreatedEventHandler;
+            _sql.DeckCreated += DeckCreatedEventHandler;
         }
 
-        public void UserCreatedEventHandler()
-        {
-            CreateSuccess();
-        }        
-         
+        public event Action UserCreateSuccess;
+        public event Action DeckCreateSuccess;
+
+
+
         /// <summary>
         /// Func directs new user to sql manager to add
         /// </summary>
@@ -37,7 +38,7 @@ namespace GameClasses
         /// <returns>true if used, false if not</returns>
         public bool IsLoginUsed(string login)
         {
-            return _sql.IfLogInUsed(login);            
+            return _sql.IfLogInUsed(login);
         }
 
         /// <summary>
@@ -57,28 +58,97 @@ namespace GameClasses
         /// <param name="userLogin">user login</param>
         public void SetPlayer(string userLogin)
         {
+            User usr = _sql.GetUser(userLogin);
             _plyr = new Player();
-            _plyr.playerName = userLogin;
-            _plyr.playerDeck = new Deck();
-            _plyr.playerDeck = _sql.GetDeck(userLogin, "First");
-            _plyr.cityCard = _plyr.playerDeck.cardsInCollection[0];
+            _plyr.playerName = usr.login;
+            _plyr.Points = usr.points;
+        }
+        public void SetPlayerDeck(Deck deck)
+        {
+            _plyr.playerDeck = (Deck)deck.Clone();
+            _plyr.cityCard = _plyr.playerDeck.CityCard;
         }
 
         /// <summary>
-        /// Func gets player deck and sets players
+        /// Func sets AI player
         /// </summary>
         /// <returns></returns>
         public GameManager SetUpNewGame()
         {
-            Player AIPlayer = new Player();           
+            Player AIPlayer = new Player();
             AIPlayer.playerName = "Computer";
-            AIPlayer.playerDeck = _sql.GetDeck("Computer", "First");
+            AIPlayer.playerDeck = _sql.GetDeck("Computer", SQLManager.ALL_CARDS_DECK);
             AIPlayer.cityCard = AIPlayer.playerDeck.cardsInCollection[0];
             GameManager _mng = new GameManager(_plyr, AIPlayer);
             return _mng;
         }
 
-        public event Action CreateSuccess;
+        /// <summary>
+        /// Func updates player points
+        /// </summary>
+        /// <param name="playerName">Player name</param>
+        /// <param name="pointsDelta">Point difference</param>
+        public void UpdatePoints(string playerName, int pointsDelta)
+        {
+            _sql.UpdatePoints(playerName, pointsDelta);
+        }
+
+        /// <summary>
+        /// Func returns current logined players decks
+        /// </summary>
+        /// <returns>Player's decks</returns>
+        public List<Deck> GetDecks()
+        {
+           return _sql.GetDecks(_plyr.playerName);
+        }
+
+        /// <summary>
+        /// Func returns current logined players deck
+        /// </summary>
+        /// <param name="deckName">Name of deck to return</param>
+        /// <returns>Specified deck of player</returns>
+        public Deck GetDeck(string deckName)
+        {
+            return _sql.GetDeck(_plyr.playerName, deckName);
+        }
+
+        /// <summary>
+        /// Func adds Deck to database
+        /// </summary>
+        /// <param name="newDeck">name of new deck</param>
+        public void AddNewDeck(Deck newDeck)
+        {
+            _sql.AddNewDeck(newDeck, _plyr.playerName);
+        }
+
+        /// <summary>
+        /// Func deletes deck from db
+        /// </summary>
+        /// <param name="deckName">Name of deck to delete</param>
+        public void Deletedeck(string deckName)
+        {
+            _sql.DeleteDeck(deckName, _plyr.playerName);
+        }
+
+        public void UserCreatedEventHandler()
+        {
+            UserCreateSuccess();
+        }
+
+        public void DeckCreatedEventHandler()
+        {
+            DeckCreateSuccess();
+        }
+
+        public Player Player
+        {
+            get
+            {
+                return _plyr;
+            }
+        }
+
+
 
         private Player _plyr;
         private SQLManager _sql = new SQLManager();

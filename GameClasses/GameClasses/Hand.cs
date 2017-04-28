@@ -7,7 +7,9 @@ using System.Collections;
 
 namespace GameClasses
 {
-
+    /// <summary>
+    /// Class Hand
+    /// </summary>
     public class Hand : CardsCollection
     {
         /// <summary>
@@ -19,9 +21,9 @@ namespace GameClasses
             Card cardToAdd = deckName.GiveCard();
             if (cardToAdd != null)
             {
-                AddCard(deckName.GiveCard());
+                AddCard(cardToAdd);
             }            
-            cards.Sort();
+            _cards.Sort();
         }
     }
 }
